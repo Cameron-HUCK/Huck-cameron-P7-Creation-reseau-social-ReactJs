@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const postSchema = mongoose.Schema({
   userId: { type: String, required: true },
   message: { type: String, required: true, maxlength : 500},
-  video: { type: String },
-  comments : {type :[ {comenterId : String, text: String, timestamp: Number} ], require: true},
   imageUrl: { type: String, required: true },
   likes: { type: Number, default: 0 },
   dislikes: { type: Number, default: 0 },
