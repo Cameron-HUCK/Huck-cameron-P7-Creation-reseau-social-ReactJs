@@ -1,11 +1,11 @@
-import React from 'react';
-import Routes from "./components/Routes/index.js";
+import React from "react-router-dom";
+import Home from '../src/pages/Home'
+//import Auth from '../src/pages/Auth';
+//import Post from '../src/pages/Post';
 
 const App = () => {
   return (
-    <div>
-      <Routes />
-    </div>
+      <Home />
   )
 }
 export default App;
