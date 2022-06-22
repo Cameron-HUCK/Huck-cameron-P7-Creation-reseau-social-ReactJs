@@ -1,0 +1,26 @@
+h1{
+  text-align: center;
+}
+ul {
+  display: flex;
+}
+
+.flex-link{
+  padding: 0px 30px 0px 30px;
+}
+
+.bar-Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+.title {
+  padding: 10px;
+  border-bottom: 1px solid black;
+}
+.content-flex {
+  border: 10px solid blue;
+
+}
