@@ -1,7 +1,10 @@
+/* Header  AND Nav CSS */
 h1{
   text-align: center;
+  background: linear-gradient(#FD2D01, #FFD7D7);
+  padding: 10px;
 }
-ul {
+.nav-container {
   display: flex;
 }
 
@@ -13,14 +16,107 @@ ul {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 10px;
   border-bottom: 1px solid black;
 }
 .title {
-  padding: 10px;
   border-bottom: 1px solid black;
 }
-.content-flex {
-  border: 10px solid blue;
 
+/* AUTH Page CSS*/
+img {
+  width: 100%;
+}
+.img-container {
+  border: 1px solid greenyellow;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.log-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Log */
+.form-container {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+li {
+      cursor: pointer;
+      border-radius: 20px;
+      padding: 10px 20px;
+      transition: 0.2s;
+}
+li:hover {
+        transform: translateX(3px);
+}
+.sign-container {
+  position: relative;
+  left: 350px;
+}
+.active-btn {
+  background: linear-gradient(#FFD7D7,#FD2D01);
+  box-shadow: 1px 2px 3px #FD2D01;
+}
+.active-btn:hover {
+  background: linear-gradient(#FFD7D7,#FD2D01 );
+  }
+
+  li {
+      cursor: pointer;
+      border-radius: 20px;
+      padding: 10px 20px;
+      transition: 0.2s;
+}
+
+#login {
+      position: relative;
+          content: "";
+          bottom: -10px;
+          width: 100%;
+}   
+#register {
+  width: 100%;
+}     
+/* HOME CSS */
+.section-page {
+  text-align: center;
+  height: 800px;
+  display: flex;
+  justify-content: space-between;
+}
+.left-bloc {
+  border: 1px solid black;
+  text-align: center;
+}
+.right-bloc {
+  border: 1px solid red;
+}
+/* CARD CSS */
+.thread-bloc{
+  width: auto;
+}
+.scroll {
+  width: auto;
+  border: 1px solid green;
+  padding: 20px;
+}
+.card {
+  border: 1px solid purple;
+  width: auto;
+}
+/* FOOTER CSS */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #4E5166;
+  height: 200px;
+}
+.logo-container {
+  width: 200px;
+}
+.back-color-footer{
+  background-color: #4E5166;
 }
