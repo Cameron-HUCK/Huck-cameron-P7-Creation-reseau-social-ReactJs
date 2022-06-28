@@ -1,4 +1,4 @@
-import Logo from '../../logo-groupomania/icon-left-font.png';
+import Logo from '../../assets/logo-groupomania/icon-left-font.png';
 
 const Footer = () => {
   return (

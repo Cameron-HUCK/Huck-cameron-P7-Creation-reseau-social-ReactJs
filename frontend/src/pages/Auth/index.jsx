@@ -1,6 +1,6 @@
 import React from 'react';
 import Log from '../../components/Log';
-import Image from "../../logo-groupomania/img-logo.png";
+import Image from "../../assets/logo-groupomania/img-logo.png";
 
 const Auth = () => {
   return (

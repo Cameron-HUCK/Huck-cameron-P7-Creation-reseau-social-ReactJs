@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import Header from './components/Header';
-import Navigation from './components/Navigation';
-import Content from './components/Content';
-import Footer from './components/Footer';
-import { UidContext } from "../src/components/Context/AppContext";
+import Header from '../Header';
+import Navigation from '../Navigation';
+import Content from '../Content';
+import Footer from '../Footer';
+import { UidContext } from "../../utils/Context";
 import axios from "axios";
 import './App.css';
 
@@ -14,8 +14,8 @@ function App() {
 		const fetchToken = async () => {
 			await axios ({
 				methode: "get",
-				url:`${process.env.REACT_APP_API_URL}userid`,
-      			withCredentials: true,
+				url:`http://localhost:4000/jwtid`,
+      			withCredentials: false,
       		})
 			.then((res) => setUid(res.data))
 			.catch((err) => console.log("No token"));

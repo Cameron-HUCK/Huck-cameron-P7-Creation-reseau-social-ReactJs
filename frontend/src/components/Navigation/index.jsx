@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import Logout from '../../logo-groupomania/logo-logout.png';
-import UidContext from '../Context/AppContext'
+import Logout from '../../assets/logo-groupomania/logo-logout.png';
+import UidContext from '../../utils/Context'
 
 const Navigation = () => {
 	const uid = useContext(UidContext);
