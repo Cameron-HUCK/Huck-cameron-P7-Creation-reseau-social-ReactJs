@@ -53,10 +53,8 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
 .catch(() => console.log('MongoDB connection failed !'));
 
 // Route JWT
-const auth = require('./middleware/auth');
-const multer = require('./middleware/multer-config');
-app.get('/jwtid', auth, multer, (req, res) => {
-	res.status(200).send(res.locals.user._id)
+app.get('/jwtid',(req, res) => {
+	res.status(200).send(res.locals.userid)
 })
 // Route for posts
 const postsRoutes = require('./routes/post');
