@@ -23,7 +23,7 @@ Card.propTypes = {
 
 Card.defaultProps = {
   label: 'Pseudo email',
-  title: 'text de ouf',
+  title: 'text de des postes',
   picture: DefaultPicture,
 }
 export default Card
