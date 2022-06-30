@@ -1,5 +1,5 @@
 import React from 'react';
-import Log from '../../components/Log';
+import Log from '../../components/FormSign';
 import Image from "../../assets/logo-groupomania/img-logo.png";
 
 const Auth = () => {
