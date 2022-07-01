@@ -38,14 +38,13 @@ h1{
 }
 
 /* AUTH Page CSS*/
-img {
-  width: 100%;
-}
+
 .img-container {
   border: 1px solid greenyellow;
   display: flex;
   justify-content: center;
   align-items: center;
+
 }
 .log-container {
   display: flex;
@@ -97,17 +96,66 @@ li:hover {
 }     
 /* HOME CSS */
 .section-page {
-  text-align: center;
-  height: 800px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
-.left-bloc {
+/* POSTE CARD CSS*/
+
+.post {
+  width: 90%;
+  margin: 20px;
   border: 1px solid black;
-  text-align: center;
+  border-radius: 15px;
 }
-.right-bloc {
-  border: 1px solid red;
+label{
+  padding-bottom: 5px;
+    display: block;
+    margin-top: 20px;
+}
+.user-id-email {
+  display: flex;
+  margin: 10px 10px 30px 10px;
+  border: 1px solid #FFD7D7;
+  box-shadow: 1px 1px 10px #FD2D01;
+  border-radius: 15px;
+  align-items: center;
+}
+
+.user-post {
+  padding-left: 10px;
+}
+
+button{
+  padding: 15px;
+  border-radius: 10px;
+  background: linear-gradient(#FFD7D7,#FD2D01);
+}
+
+.addBtton{
+  text-align: end;
+  margin-right: 30px;
+}
+
+.form-post{
+  margin: 10px;
+}
+
+#title-post{
+  background-color: white;
+  box-shadow: 1px 1px 10px  #FD2D01;
+  border-color: #FD2D01;
+  border-radius: 15px;
+  margin-left: 10px;
+  padding: 5px 0px 5px 0px;
+}
+#text-post{
+  background-color: white;
+  box-shadow: 1px 1px 10px #FD2D01;
+  border-radius: 15px;
+  margin: 0px 10px 10px 10px;
+  height: 100px;
+  border-color: #FD2D01;
+  width: 75%;
 }
 /* CARD CSS */
 .thread-bloc{
@@ -129,9 +177,12 @@ li:hover {
   background-color: #4E5166;
   height: 200px;
 }
-.logo-container {
-  width: 200px;
+
+.logo-size{
+  height: 200px;
+  width: 100%;
 }
+
 .back-color-footer{
   background-color: #4E5166;
 }

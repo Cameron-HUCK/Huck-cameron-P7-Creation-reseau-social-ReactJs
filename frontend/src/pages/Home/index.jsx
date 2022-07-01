@@ -1,12 +1,4 @@
-//import Thread from "../../utils/Context/Thread";
-import Card from '../../components/Card/index'
-
-const cardPost = [
-  {
-    name: 'userId',
-
-  }
-]
+import Card from '../../components/Card/index';
 
 function Home () {
     return (
@@ -15,18 +7,12 @@ function Home () {
         <h1>Home</h1>
       </div>
       <div className='section-page'>
-        {cardPost.map((profile, index) => (
-         <Card 
-          key={`${profile.name}-${index}`}
-          label={profile.name}
-          title = {profile.name}
-         /> 
-        ))}
+        <Card />
+        </div>
         <div className='left-bloc'>
         </div>
         <div className="right-bloc">
-        </div>
-      </div> 
+        </div> 
     </section>
   );
 }

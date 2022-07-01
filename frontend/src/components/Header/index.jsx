@@ -3,7 +3,7 @@ import Logo from '../../assets/logo-groupomania/icon-left-font-monochrome-black.
 const Header = () => {
   return (
      <header>
-       <img src={Logo} aria-hidden alt="logo" width="100px" height="150px"/>
+       <img src={Logo} aria-hidden alt="logo" width="140px" height="150px"/>
      </header>
   );
 }

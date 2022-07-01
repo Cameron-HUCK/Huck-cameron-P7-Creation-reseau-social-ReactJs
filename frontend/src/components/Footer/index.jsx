@@ -5,10 +5,10 @@ const Footer = () => {
      <footer>
        <div className='footer-container'>
           <div className='logo-container'>
-            <img src={Logo} aria-hidden alt="logo" />
+            <img className='logo-size' src={Logo} aria-hidden alt="logo" />
           </div>
           <div className='logo-container'>
-            <img src={Logo} aria-hidden alt="logo" />
+            <img className='logo-size' src={Logo} aria-hidden alt="logo" />
           </div> 
        </div>
      </footer>

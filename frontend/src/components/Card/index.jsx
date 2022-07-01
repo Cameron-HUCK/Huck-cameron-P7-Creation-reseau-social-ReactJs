@@ -1,29 +1,17 @@
-import PropTypes from 'prop-types'
-import DefaultPicture from '../../assets/profile.png'
+import React  from "react";
+import profilpicture from '../../assets/profile.png'
 
-function Card({ label, title, picture }) {
-  return (
-    <div>
-        <div style={{ display: 'flex', alignItems: 'center', padding: 15 }}>
-            <img src={picture} alt="profile" height={80} width={80} />
-            <span>{label}</span>
+const CardPost = () => {
+    return (
+        <div className="post">
+            <div className="user-id-email">
+                <img src={profilpicture} aria-hidden alt="profil" width='80px' height='70px' />
+                <div className="user-post">
+                <span>email User Id</span>
+                </div>
+            </div>
         </div>
-        <div style={{ display: 'flex', padding: 15 }}>
-            <span>{title}</span>
-        </div>  
-    </div>
-  )
+    );
 }
 
-Card.propTypes = {
-  label: PropTypes.string.isRequired,
-  title: PropTypes.string.isRequired,
-  picture: PropTypes.string.isRequired,
-}
-
-Card.defaultProps = {
-  label: 'Pseudo email',
-  title: 'text de des postes',
-  picture: DefaultPicture,
-}
-export default Card
+export default CardPost;

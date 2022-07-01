@@ -1,6 +1,11 @@
+import AddPost from '../../components/Post/index'
+
 const Post = () => {
   return (
-     <h1>Post</h1>
+     <div>
+       <h1>ADD YOUR POST</h1>
+       <AddPost />
+     </div>
   );
 }
 

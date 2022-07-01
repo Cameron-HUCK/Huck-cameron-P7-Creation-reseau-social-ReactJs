@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import Header from '../Header';
 import Navigation from '../Navigation';
-import Content from '../Content/index.jsx';
+import Content from '../Content/index';
 import Footer from '../Footer';
 import { UidContext } from "../../utils/Context";
 import axios from "axios";
 import './App.css';
-//import Error from '../Error/index'
 
 function App() {
 	const [uid, setUid] = useState(null);
