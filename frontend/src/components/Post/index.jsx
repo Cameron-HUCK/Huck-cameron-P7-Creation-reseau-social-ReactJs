@@ -29,6 +29,9 @@ function AddPost () {
                             maxLength="80" 
                             size="200">
                         </input>
+                        <label htmlFor="file" className="label-file">Choisir une image</label>
+                        <input id="file" className="input-file" type="file"/>    
+                        <img src="imagePreview" alt="imagePreview"/>
                         <br />
                         <div className="addBtton">
                             <button id="addToPost">Publication</button>

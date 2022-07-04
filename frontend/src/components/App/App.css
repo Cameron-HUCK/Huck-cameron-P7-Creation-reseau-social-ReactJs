@@ -157,6 +157,15 @@ button{
   border-color: #FD2D01;
   width: 75%;
 }
+.label-file {
+  cursor: pointer;
+  color: #FD2D01;
+  font-weight: bold;
+}
+
+.input-file {
+  display: none;
+}
 /* CARD CSS */
 .thread-bloc{
   width: auto;
