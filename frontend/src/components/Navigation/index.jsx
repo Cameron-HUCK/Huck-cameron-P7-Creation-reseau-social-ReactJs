@@ -5,6 +5,7 @@ import UidContext from '../../utils/Context'
 
 const Navigation = () => {
 	const uid = useContext(UidContext);
+	console.log(uid);
 	return (
 		<nav>
 			{uid ? (

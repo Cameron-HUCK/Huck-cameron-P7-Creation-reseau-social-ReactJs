@@ -1,26 +1,39 @@
-import React, { useEffect }  from "react";
+import React from "react";
 import profilpicture from '../../assets/profile.png'
-import data from '../../utils/hooks/index'
 
-const CardPost = () => {
-    console.log(data);
-    useEffect(() => {
-        fetch(`http://localhost:3000/api/auth/${data}}`)
-             .then((response) => response.json()
-             .then(({ surveyData }) => console.log(surveyData))
-             .catch((error) => console.log(error))
-         )
-     }, [])
-    return (
-        <div className="post">
-            <div className="user-id-email">
-                <img src={profilpicture} aria-hidden alt="profil" width='80px' height='70px' />
-                <div className="user-post">
-                <span>{data}</span>
-                </div>
+//const CardPost = () => {
+//    const postList = [
+//        {
+//            userId: { type: String, required: true },
+//            message: { type: String, required: true, maxlength : 500},
+//            imageUrl: { type: String, required: true },
+//            likes: { type: Number, default: 0 },
+//            dislikes: { type: Number, default: 0 },
+//            usersLiked: { type: ['String<userID>'], required: true },
+//            usersDisliked: { type:['String<userID>'], required: true },
+//        }
+//    ]
+//    return (
+//        <div className="post">
+//            <div className="user-id-email">
+//                <img src={profilpicture} aria-hidden alt="profil" width='80px' height='70px' />
+//                <div className="user-post">
+//                <span>email user</span>
+//                </div>
+//            </div>
+//        </div>
+//    );
+    function Card({ label, title, picture }) {
+        return (
+            <div style={{ display: 'flex', flexDirection: 'column', padding: 15 }}>
+                <span>{label}</span>
+                <img src={picture} alt="freelance" height={80} width={80} />
+                <span>{title}</span>
             </div>
-        </div>
-    );
-}
+        )
+    }
+     
+    export default Card
+//}
 
-export default CardPost;
+//export default CardPost;
