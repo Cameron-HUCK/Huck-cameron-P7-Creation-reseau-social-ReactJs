@@ -1,9 +1,15 @@
 import { useEffect, useState } from 'react';
+import {useParams} from 'react-router-dom'
 //import Card from '../../components/Card/index';
 import profilpicture from '../../assets/profile.png'
 
+
 function Home () {
 
+  const [posts, setPosts] = useState('')
+  const [title, setTitle] = useState('')
+  const [message, setMessage] = useState('')
+  
     useEffect(() => {
       fetch(`${process.env.REACT_APP_API_URL}api/post`)
       .then(function(res) {
@@ -19,7 +25,9 @@ function Home () {
         console.log(err);
       })
     }, [])
+    
     return (
+
     <section>
       <div className='title'>
         <h1>Home</h1>
@@ -29,15 +37,15 @@ function Home () {
           <div className="user-id-email">
             <img src={profilpicture} aria-hidden alt="profil" width='80px' height='70px' />
             <div id="user-post">
-              <span>email User Id</span>
+              <span>{posts}</span>
             </div>
           </div>
           <ul id='post-list'>
             <li className='posts-item'>
-              <h2 className='post-title'> Titre du Post</h2>
+              <h2 className='post-title'>{title}</h2>
             </li>
             <li>
-              <p className='text-to-post'>Text du post</p>
+              <p className='text-to-post'>{message}</p>
             </li>
           </ul>
           <div id="post-image">

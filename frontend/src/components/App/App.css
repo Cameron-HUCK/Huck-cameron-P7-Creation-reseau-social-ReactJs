@@ -154,8 +154,8 @@ button{
   background-color: white;
   box-shadow: 1px 1px 10px  #FD2D01;
   border-color: #FD2D01;
-  border-radius: 15px;
-  padding: 5px 0px 5px 0px;
+  border-radius: 10px;
+  padding: 15px 0px 15px 0px;
 }
 ul
 {
@@ -165,7 +165,7 @@ ul
 #text-post {
   background-color: white;
   box-shadow: 1px 1px 10px #FD2D01;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 0px 10px 10px 10px;
   height: 100px;
   border-color: #FD2D01;
@@ -174,7 +174,7 @@ ul
 .text-to-post{
   background-color: white;
   box-shadow: 1px 1px 10px #FD2D01;
-  border-radius: 15px;
+  border-radius: 10px;
   margin: 0px 10px 10px 0px;
   height: 100px;
   border-color: #FD2D01;
