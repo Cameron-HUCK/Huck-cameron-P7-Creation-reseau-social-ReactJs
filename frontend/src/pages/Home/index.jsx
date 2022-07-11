@@ -1,50 +1,54 @@
-import { useEffect } from 'react';
-import Card from '../../components/Card/index';
+import { useEffect, useState } from 'react';
+//import Card from '../../components/Card/index';
+import profilpicture from '../../assets/profile.png'
 
 function Home () {
-  useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_URL}api/post`)
-    .then(function(res) {
-      if(res.ok) {
-        return res.json();
-      }
-    })
-    .then(function(data) {
-      console.log(data);
-      let posts = data;
-    })
-    .catch(function(err) {
-      console.log(err);
-    })
-  }, [])
-  const postList = [ {
-    userId: { type: String, required: true },
-    title: { type: String, required: true, maxlength : 500},
-    message: { type: String, required: true, maxlength : 500},
-    imageUrl: { type: String, required: true },
-    likes: { type: Number, default: 0 },
-    dislikes: { type: Number, default: 0 },
-    usersLiked: { type: ['String<userID>'], required: true },
-    usersDisliked: { type:['String<userID>'], required: true },
-  }
-  ]
+
+    useEffect(() => {
+      fetch(`${process.env.REACT_APP_API_URL}api/post`)
+      .then(function(res) {
+        if(res.ok) {
+          return res.json();
+        }
+      })
+      .then(function(data) {
+        const posts = data;
+        console.log(posts);
+      })
+      .catch(function(err) {
+        console.log(err);
+      })
+    }, [])
     return (
     <section>
       <div className='title'>
         <h1>Home</h1>
       </div>
-      {postList.map((post, index) => (
-          <Card
-              key={`${post.userId}-${index}`}
-              title={post.title}
-              message={post.message}
-              imageUrl={post.imageUrl}
-          />
-      ))}
-        <div className='left-bloc'>
+      <div className='section-page'>
+      <div id="post">
+          <div className="user-id-email">
+            <img src={profilpicture} aria-hidden alt="profil" width='80px' height='70px' />
+            <div id="user-post">
+              <span>email User Id</span>
+            </div>
+          </div>
+          <ul id='post-list'>
+            <li className='posts-item'>
+              <h2 className='post-title'> Titre du Post</h2>
+            </li>
+            <li>
+              <p className='text-to-post'>Text du post</p>
+            </li>
+          </ul>
+          <div id="post-image">
+            <img src="posts.imageUrl" alt="post"/>
+          </div>
         </div>
-        <div className="right-bloc">
-        </div> 
+      </div>
+      <div className='left-bloc'>
+      </div>
+      <div className="right-bloc">
+      </div> 
     </section>
   );
 }
