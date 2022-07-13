@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import {useParams} from 'react-router-dom'
 //import Card from '../../components/Card/index';
 import profilpicture from '../../assets/profile.png'
 
@@ -9,7 +8,7 @@ function Home () {
   const [posts, setPosts] = useState('')
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
-  
+
     useEffect(() => {
       fetch(`${process.env.REACT_APP_API_URL}api/post`)
       .then(function(res) {
