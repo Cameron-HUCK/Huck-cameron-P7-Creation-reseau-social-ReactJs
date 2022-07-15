@@ -3,7 +3,7 @@ import Header from '../Header';
 import Navigation from '../Navigation';
 import Content from '../Content/index';
 import Footer from '../Footer';
-import { UidContext } from "../../utils/Context";
+import { UidContext } from "../../utils/context";
 import axios from "axios";
 import './App.css';
 

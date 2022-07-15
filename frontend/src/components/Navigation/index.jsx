@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logout from '../../assets/logo-groupomania/logo-logout.png';
-import UidContext from '../../utils/Context'
+import UidContext from '../../utils/context'
 
 const Navigation = () => {
 	const uid = useContext(UidContext);
@@ -20,10 +20,10 @@ const Navigation = () => {
 							<Link to="/post">Post</Link>
 						</li>
 					</div>	
-					<div className="logo-logout">
-						<Link to="/auth">
-							<img src={Logout} aria-hidden alt="logout"></img>
-						</Link>  
+					<div className='flex-link'>
+						<li>
+							<Link to="/auth">Auth</Link>
+						</li>
 					</div>	
 				</ul>
 			) : (
@@ -38,12 +38,12 @@ const Navigation = () => {
 						<li>
 							<Link to="/post">Post</Link>
 						</li>
-					</div>	
-					<div className='flex-link'>
-						<li>
-							<Link to="/auth">Auth</Link>
-						</li>
 					</div>
+					<div className="logo-logout">
+						<Link to="/auth">
+							<img src={Logout} aria-hidden alt="logout"></img>
+						</Link>  
+					</div>	
 				</div>
 			</ul>	
 			)}
