@@ -9,7 +9,8 @@ function Post({ title, message, imageUrl, userId }) {
 			<div className="post-details">
 				<div className="post-author">User= {userId}</div>
 				<div className="post-date">12-12-2020</div>
-				<div className="post-likes">♥ TODO</div>
+				<button className="post-likes">♥ Dislike</button>
+				<button className="post-dislikes">♥ Like</button>
 			</div>
 		</li>
 	)
