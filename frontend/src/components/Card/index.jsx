@@ -1,11 +1,14 @@
-import React  from "react";
+import React, { useState }  from "react";
 
 
 const AddCardPost = () => {
+    const [inputValue, setInputValue] = useState("Posez votre question ici");
+
     function handleSubmit(e) {
         e.preventDefault()
         alert('Post publiée')
     }
+
     console.log(handleSubmit);
     return (
     <li className='add-post-item'>
@@ -28,7 +31,7 @@ const AddCardPost = () => {
                         maxLength="250" 
                         size="200">
                     </input>
-                    <label htmlFor="file" className="label-file">Choisir une image</label>
+                    <label htmlFor="file-img" className="label-file">Choisir une image</label>
                     <input id="file-img" className="input-file" type="file"/>    
                     <img src="imagePreview" alt="imagePreview"/>
                     <br />
