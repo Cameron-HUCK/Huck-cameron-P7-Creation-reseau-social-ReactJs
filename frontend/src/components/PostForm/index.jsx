@@ -2,10 +2,9 @@ import React from "react";
 
 const AddCardPost = () => {
 
-	//const [inputValue, setInputValue] = useState("Posez votre question ici");
-
 	function handleSubmit(e) {
 		e.preventDefault();
+		
 
 		// Récupérer les valeurs des 3 champs à envoyer au serveur : title, content, image
 		let postTitle = document.getElementById('post-title').value;
@@ -16,40 +15,41 @@ const AddCardPost = () => {
 		console.log(postContent);
 		console.log(postImage);
 
-		// Vérifier que les champs sont bien saisis
-
-		// -- Checker Regex, non vide, etc
+		//// -- Checker Regex, non vide, etc
 
 		// Envoyer les données au backend
-		// -- Fetch ?
+		const formRegex = e.target
+		const formData = new FormData();
+		const requestOptionsCreate = {
+			methode: 'POST',
+			body: formData,
+		}
 
-		var formData = new FormData();
-		formData.append('post', {
-			title: postTitle,
-			content: postContent
-		});
-		formData.append('image', document.getElementById('post-image').files[0]);
-		fetch(
-			`${process.env.REACT_APP_API_URL}api/post`,
-			{
-				method: 'POST',
-				body: formData
+		if (formRegex[0].value === '' && formRegex[1].files[0] === undefined) {
+			postTitle.fire('Vous avez oublie de saisir un texte et/ou une image')
+		} else if(formRegex[0].value === '' && formRegex[1].files[0] !== undefined){
+			formData.append('post', {
+				title: postTitle,
+				message: postContent
+			});
+			formData.append('image', document.getElementById('post-image').files[0]);
+
+			fetch(`${process.env.REACT_APP_API_URL}api/post`,
+			requestOptionsCreate
+			)
+			.then(function(res) {
+				if(res.ok) {
+					return res.json();
+				}
+			})
+			.then(function(data) {
+				console.log(data);
+			})
+			.catch(function(err) {
+				console.log(err);
+			})
 			}
-		)
-		.then(function(res) {
-			if(res.ok) {
-				return res.json();
-			}
-		})
-		.then(function(data) {
-		const post = formData;
-		for (let i = 0; i < post.length; i++) 
-			console.log(formData);
-		})
-		.catch(function(err) {
-			console.log(err);
-		})
-	}
+		}
 	console.log(handleSubmit);
 	return (
 		<li className='add-post-item'>
@@ -86,3 +86,28 @@ const AddCardPost = () => {
 }
 
 export default AddCardPost;
+
+//formData.append('post', {
+//	title: postTitle,
+//	content: postContent
+//});
+//formData.append('image', document.getElementById('post-image').files[0]);
+//fetch(
+//	`${process.env.REACT_APP_API_URL}api/post`,
+//	{
+//		method: 'POST',
+//		body: formData
+//	}
+//)
+//.then(function(res) {
+//	if(res.ok) {
+//		return res.json();
+//	}
+//})
+//.then(function(data) {
+//	console.log(data);
+//})
+//.catch(function(err) {
+//	console.log(err);
+//})
+//}
