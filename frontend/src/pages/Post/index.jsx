@@ -1,5 +1,5 @@
 import React from "react";
-import AddCardPost from '../../components/Card/index'
+import Postform from '../../components/PostForm/index'
 function AddPost () {
     return (
         <section>
@@ -8,7 +8,7 @@ function AddPost () {
             </div>
             <ul className='send-post'>
                 <div id="add-post">
-                    <AddCardPost />
+                    <Postform />
                 </div>
             </ul>
         </section>

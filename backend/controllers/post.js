@@ -6,7 +6,12 @@ const fs = require('fs');
 
 // Allows you to create and add a post
 exports.createPost =  (req, res, next) => {
-  const postObject = JSON.parse(req.body.post);
+
+console.log(req.body);
+console.log(req.file.filename);
+
+  //const postObject = JSON.parse(req.body.post);
+  const postObject = req.body.post;
   delete postObject._id;
   const newPost = new Post({
     ...postObject,

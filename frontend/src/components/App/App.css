@@ -149,15 +149,24 @@ li:hover {
   width: 100%;
   margin: 5px 0px 20px 0px ;
   justify-content: center;
+  border-radius: 15px;
 }
 .post-details {
   border: 1px solid black;
   padding: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   margin: 10px 0px 10px 0px ;
+  border-radius: 10px;
+}
+.shadow-gray {
+  box-shadow: 1px 1px 10px gray;
 }
 
+.back-color-white {
+  background-color: white;
+}
 /* POSTE Page CSS */
 
 label{
