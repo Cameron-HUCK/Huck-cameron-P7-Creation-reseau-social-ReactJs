@@ -12,7 +12,7 @@ const SignUpForm = () => {
 
     await axios({
       method: "post",
-      url:`${process.env.REACT_APP_API_URL}api/auth/signup`,
+      url:`http://localhost:4000/api/auth/signup`,
       withCredentials: false,
       data : {
         email,

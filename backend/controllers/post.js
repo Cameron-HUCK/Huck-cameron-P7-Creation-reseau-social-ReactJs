@@ -3,24 +3,34 @@ const express = require('express');
 const Post = require('../models/post');
 const User = require('../models/user');
 const fs = require('fs');
+console.log('req.file.filename');
 
 // Allows you to create and add a post
-exports.createPost =  (req, res, next) => {
+exports.createPost = async (req, res, next)  => {
 
-console.log(req.body);
-console.log(req.file.filename);
+console.log('req.body.post');
+console.log('1');
+
 
   //const postObject = JSON.parse(req.body.post);
   const postObject = req.body.post;
   delete postObject._id;
-  const newPost = new Post({
-    ...postObject,
-    imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+  console.log('1');
+  const newPost = new Post({ 
+    title: req.body.title,
+    message: req.body.message,
+    imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.file}`,
   });
-  newPost.save()
-  .then(() => res.status(201).json({ message:'Post saved!'}))
-  .catch(error => res.status(400).json({ error }));
-}
+  console.log('2');
+  try {
+    const post = newPost.save();
+    console.log('4');
+    return res.status(201).json(post);
+  } catch (err) {
+    console.log('3');
+    return res.status(400).send(err);
+  }
+};
 
 // Allows you to modify the post information
 exports.modifyPost = (req, res, next) => {

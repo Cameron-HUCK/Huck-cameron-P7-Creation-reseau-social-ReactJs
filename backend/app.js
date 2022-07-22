@@ -56,6 +56,7 @@ mongoose.connect(`mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASS
 app.get('/jwtid',(req, res) => {
 	res.status(200).send(res.locals.userid)
 })
+
 // Route for posts
 const postsRoutes = require('./routes/post');
 app.use('/api/post', postsRoutes);

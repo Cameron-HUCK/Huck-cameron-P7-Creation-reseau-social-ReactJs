@@ -7,7 +7,7 @@ function Home () {
   const [posts, setPosts] = useState([]);
 
     useEffect(() => {
-      fetch(`${process.env.REACT_APP_API_URL}api/post`)
+      fetch(`http://localhost:4000/api/post`)
       .then(function(res) {
         if(res.ok) {
           return res.json();
