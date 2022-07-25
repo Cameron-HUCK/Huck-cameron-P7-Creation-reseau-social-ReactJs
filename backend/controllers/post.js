@@ -16,11 +16,11 @@ console.log('le neant');
   const postObject = req.body.post;
   console.log('nada');
   const newPost = new Post({ 
-    title: req.body,
-    message: req.body,
+    title: req.body.title,
+    message: req.body.message,
     imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file}`,
   });
-  console.log(req.body);
+  console.log(req.body.title);
   try {
     const post = newPost.save();
     console.log('Ca marche mais toujours rien !!!!!!');
