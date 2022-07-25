@@ -9,25 +9,24 @@ console.log('req.file.filename');
 exports.createPost = async (req, res, next)  => {
 
 console.log('req.body.post');
-console.log('1');
+console.log('le neant');
 
 
   //const postObject = JSON.parse(req.body.post);
   const postObject = req.body.post;
-  delete postObject._id;
-  console.log('1');
+  console.log('nada');
   const newPost = new Post({ 
-    title: req.body.title,
-    message: req.body.message,
-    imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.file}`,
+    title: req.body,
+    message: req.body,
+    imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file}`,
   });
-  console.log('2');
+  console.log(req.body);
   try {
     const post = newPost.save();
-    console.log('4');
+    console.log('Ca marche mais toujours rien !!!!!!');
     return res.status(201).json(post);
   } catch (err) {
-    console.log('3');
+    console.log('Et bah non !!!');
     return res.status(400).send(err);
   }
 };

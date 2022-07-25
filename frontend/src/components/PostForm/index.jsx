@@ -23,8 +23,9 @@ const PostForm = () => {
 		const formData = new FormData();
 		formData.append('post', {
 			title: postTitle,
-			content: postContent
+			message: postContent
 		});
+		console.log(postContent);
 		formData.append('image', document.getElementById('post-image').files[0]);
 		fetch(
 			`http://localhost:4000/api/post`,
@@ -52,7 +53,7 @@ const PostForm = () => {
 			<div className="form-post">
 				<form onSubmit={handleSubmit} method="post" action="">
 					<label htmlFor="title">Titre du post</label>
-					<input type="text" id="post-title" name="post-title"
+					<input type="text" id="post-title" name="post-title" 
 						required
 						minLength="3"
 						maxLength="30"
@@ -61,7 +62,7 @@ const PostForm = () => {
 					<br />
 					<label htmlFor="texte">Quoi de neuf ?</label>
 					<div className="flex-from">
-						<input type="text" id="post-content" name="post-content"
+						<input type="text" id="post-content" name="post-content" 
 							required
 							minLength="0"
 							maxLength="250"
