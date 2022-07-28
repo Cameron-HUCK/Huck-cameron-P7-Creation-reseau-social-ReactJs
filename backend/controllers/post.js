@@ -3,32 +3,25 @@ const express = require('express');
 const Post = require('../models/post');
 const User = require('../models/user');
 const fs = require('fs');
-console.log('req.file.filename');
 
 // Allows you to create and add a post
 exports.createPost = async (req, res, next)  => {
-
-console.log('req.body.post');
-console.log('le neant');
-
-
-  //const postObject = JSON.parse(req.body.post);
-  const postObject = req.body.post;
-  console.log('nada');
-  const newPost = new Post({ 
-    title: req.body.title,
-    message: req.body.message,
-    imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file}`,
-  });
-  console.log(req.body.title);
-  try {
-    const post = newPost.save();
-    console.log('Ca marche mais toujours rien !!!!!!');
-    return res.status(201).json(post);
-  } catch (err) {
-    console.log('Et bah non !!!');
-    return res.status(400).send(err);
-  }
+	//console.log(req.file.filename);
+	//console.log(req.body.post);
+	try {
+		let postData = JSON.parse(req.body.post);
+		let newPost = new Post({
+			userId: 'fhfgjkdfgkjfdhkjghdfkjgh',
+			title: postData.title,
+			message: postData.message,
+			imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+		});
+		newPost.save()
+		.then(() => res.status(201).json({ message:'Post saved!'}))
+		.catch(error => res.status(400).json({ error }));
+	} catch (err) {
+		return res.status(400).send(err);
+	}
 };
 
 // Allows you to modify the post information

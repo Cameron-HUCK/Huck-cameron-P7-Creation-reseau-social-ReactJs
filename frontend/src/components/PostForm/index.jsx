@@ -20,12 +20,12 @@ const PostForm = () => {
 		// Envoyer les données au backend
 		// -- Fetch ?
 
-		const formData = new FormData();
-		formData.append('post', {
+
+		let formData = new FormData();
+		formData.append('post', JSON.stringify({
 			title: postTitle,
 			message: postContent
-		});
-		console.log(postContent);
+		}));
 		formData.append('image', document.getElementById('post-image').files[0]);
 		fetch(
 			`http://localhost:4000/api/post`,
