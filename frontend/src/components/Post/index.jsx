@@ -20,11 +20,29 @@ function Post({ title, message, imageUrl, userId }) {
 			}
 		}
 		let postId = getParamUrl('id');
+		// Récupérer les valeurs des 3 champs à envoyer au serveur : title, content, image
+		let postTitle = document.getElementById('post-title');
+		let postContent = document.getElementById('post-content');
+		let postImage = document.getElementById('post-image');
+
+		console.log(postTitle);
+		console.log(postContent);
+		console.log(postImage);
+
+
+
+
+		let formData = new FormData();
+		formData.append('post', JSON.stringify({
+			title: postTitle,
+			message: postContent
+		}));
+		
 		fetch(
 			`http://localhost:3000/api/post/${postId}`,
 			{
 				method: 'put',
-				body: postId
+				body: formData
 			}
 		)
 		.then(function(res) {

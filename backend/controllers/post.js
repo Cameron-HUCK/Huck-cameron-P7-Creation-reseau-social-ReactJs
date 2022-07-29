@@ -33,7 +33,7 @@ exports.modifyPost = (req, res, next) => {
   }:
   //spread Operator
   {
-    ...req.body 
+    ...req.body.post
   };
   Post.findOne({ _id: req.params.id })
   .then(async post => {
