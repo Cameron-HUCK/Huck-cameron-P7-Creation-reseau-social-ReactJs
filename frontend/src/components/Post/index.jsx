@@ -11,6 +11,7 @@ function Post({ title, message, imageUrl, userId }) {
 				let url = document.location.href;
 				let urlObject = new URL(url);
 				let value = urlObject.searchParams.get(param);
+				console.log(value);
 				if(value == null) {
 					return '';
 				}
@@ -37,7 +38,7 @@ function Post({ title, message, imageUrl, userId }) {
 			title: postTitle,
 			message: postContent
 		}));
-		
+		formData.append('image', document.getElementById('post-image'));
 		fetch(
 			`http://localhost:3000/api/post/${postId}`,
 			{
