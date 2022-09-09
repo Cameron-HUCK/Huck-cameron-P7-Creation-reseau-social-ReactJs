@@ -1,15 +1,8 @@
-import Logo from '../../assets/logo-groupomania/icon-left-font.png';
-
 const Footer = () => {
   return (
      <footer>
-       <div className='footer-container'>
-          <div className='logo-container'>
-            <img className='logo-size' src={Logo} aria-hidden alt="logo" />
-          </div>
-          <div className='logo-container'>
-            <img className='logo-size' src={Logo} aria-hidden alt="logo" />
-          </div> 
+       <div className='footer-barre'>
+         <div className="footer-container">Groupamania - Copyright 2022</div>
        </div>
      </footer>
   );

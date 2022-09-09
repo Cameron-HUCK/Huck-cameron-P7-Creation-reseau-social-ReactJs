@@ -29,26 +29,25 @@ const SignUpForm = () => {
   }
   return (
     <form action="" onSubmit={handleRegister} id='sign-up-form'>
-      <label htmlFor="email">Email</label>
-      <br />
+      <label htmlFor="email" className='flex-mail'>Add your Email :</label>
       <input type="text"
       name="email"
       id="email"
       onChange={(e) => setEmail(e.target.value)}
       value={email}
+      required
       />
       <div className="email-error"></div>
-      <br />
-      <label htmlFor="password">Mot de passe</label>
-      <br />
+      <label htmlFor="password">Create password:</label>
       <input type="text"
       name="password"
       id="password"
       onChange={(e) => setPassword(e.target.value)}
       value={password}
+      required
       />
       <div className="password-error"></div>
-      <input type="submit" value="Valider inscription" />
+      <input type="submit" value="Validate registration" className='validate-button'/>
     </form>
   );
 }

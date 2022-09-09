@@ -28,9 +28,8 @@ function Home () {
 				<h1>Home</h1>
 			</div>
 			<div className='section-page'>
-        <div className='left-bloc'></div>
           <div id="posts">
-          <div className='bloc-center'>POST</div>
+          <div className='bloc-center'>Actuality :</div>
             <ul id="posts-list">
               {posts.map((post, index) => (
                 <Post
@@ -42,7 +41,6 @@ function Home () {
               ))}
             </ul>
           </div>
-          <div className="right-bloc"></div>
         </div>
 		</section>
   );

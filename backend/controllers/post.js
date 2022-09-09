@@ -6,12 +6,10 @@ const fs = require('fs');
 
 // Allows you to create and add a post
 exports.createPost = async (req, res, next)  => {
-	//console.log(req.file.filename);
-	//console.log(req.body.post);
 	try {
 		let postData = JSON.parse(req.body.post);
 		let newPost = new Post({
-			userId: 'fhfgjkdfgkjfdhkjghdfkjgh',
+			userId: 'huck-cameron@hotmail.fr',
 			title: postData.title,
 			message: postData.message,
 			imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`

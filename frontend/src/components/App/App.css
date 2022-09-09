@@ -1,7 +1,6 @@
 /* BODY CSS */
 * {
   margin: 0;
-  background: #FFD7D7;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -13,145 +12,166 @@ code {
     monospace;
 }
 
-/* Header  AND Nav CSS */
-h1{
-  text-align: center;
-  background: linear-gradient(#FD2D01, #FFD7D7);
-  padding: 10px;
-}
-.nav-container {
-  display: flex;
-  align-items: center;
+/*color */
+.color-black{
+  color: black;
 }
 
-.flex-link{
-  padding: 0px 30px 0px 30px;
+/* Header  AND Nav CSS */
+h1{
+  font-size: xx-large;
+  font-family: 'Shrikhand', cursive;
+  text-align: center;
+  background: #FFD7D7;
+  padding: 20px 0px 20px 0px;
+}
+
+a{
+  text-decoration: none;
+  font-family: 'Shrikhand', cursive;
+  color: #FD2D01;
+}
+
+img{
+  width: 150px;
+}
+
+.flex-link {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+}
+
+.nav-container{
+  padding: 0px 50px 0px 30px;
+}
+
+.nav-container:hover{
+  border-bottom: 2px solid #FD2D01;
 }
 
 .bar-Nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid black;
 }
 .title {
-  border-bottom: 1px solid black;
-  box-shadow: 2px 2px 10px gray;
+  box-shadow: 2px 3px 8px rgb(224, 217, 217);
 }
 
-/* AUTH Page CSS*/
-
-.img-container {
-  border: 1px solid greenyellow;
-  display: flex;
-  justify-content: center;
+.logo-logout {
+  width: 20px;
   align-items: center;
-
-}
-.log-container {
-  display: flex;
-  justify-content: space-between;
+  padding: 0px 50px 0px 50px;
 }
 
-/* Log */
-.form-container {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
+.logo-logout:hover{
+  transform: scale(1.03);
+  opacity: 0.8;
 }
-li {
-      cursor: pointer;
-      border-radius: 20px;
-      padding: 10px 20px;
-      transition: 0.2s;
+
+/* Auth Page CSS*/
+label{
+  font-style: italic;
+  font-size: 20px;
+  color: #FD2D01;
+  display: block;
+  margin-bottom: 5px;
 }
-li:hover {
-        transform: translateX(3px);
+#email{
+  border-radius: 10px;
+  margin-bottom: 20px;
+  width: 400px;
+  padding: 2px;
 }
-.sign-container {
-  position: relative;
-  left: 350px;
+#password{
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 400px;
+  padding: 2px;
 }
-.active-btn {
+#sign-up-form{
+  padding: 20px 0px 40px 30px;
+}
+.validate-button{
+  font-style: italic;
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  background: #FFD7D7;
+}
+.validate-button:active{
   background: linear-gradient(#FFD7D7,#FD2D01);
-  box-shadow: 1px 2px 3px #FD2D01;
-}
-.active-btn:hover {
-  background: linear-gradient(#FFD7D7,#FD2D01 );
-  }
-
-  li {
-      cursor: pointer;
-      border-radius: 20px;
-      padding: 10px 20px;
-      transition: 0.2s;
+  transform: scale(1.03);
+  opacity: 0.8;
+  color: white;
 }
 
-#login {
-      position: relative;
-          content: "";
-          bottom: -10px;
-          width: 100%;
-}   
-#register {
-  width: 100%;
-}     
 /* HOME CSS */
-
-.section-page {
-  display: flex;
-  justify-content: center;
-}
-#posts  {
-  width: 100%;
-}
-.left-bloc, .right-bloc{
-  width: 50%;
-  border: 1px solid black;
+#posts {
+  margin-top: 25px;
 }
 .bloc-center {
+  font-family: 'Courier New', Courier, monospace;
   font-size: 30px;
   font-weight: bolder;
   background: white;
-  padding: 10px;
-  text-align: center;
-  border-bottom: 2px solid black;
+  padding: 10px 10px 10px 30px;
+  text-decoration: underline #FFD7D7;
 }
 
 /* POST CARD CSS */
 .posts-item {
-  margin: 30px;
+  margin: 30px 50px 30px 50px;
+  padding: 20px;
   border: 1px solid black;
-  box-shadow: 3px 3px 18px grey;
+  background-color: #FFD7D7;
+}
+.flex-up {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
 }
 .post-title{
+  width: 76%;
   text-align: center;
-  width: 100%;
+  margin: 0px 17px 0px 50px;
   background-color: white;
-  box-shadow: 1px 1px 10px  #FD2D01;
-  border-color: #FD2D01;
+  padding: 4px;
+  box-shadow: 1px 1px 5px gray;
   border-radius: 10px;
-  margin-bottom: 20px;
-  padding: 10px 0px 10px 0px;
 }
-.post-message {
+.post-author {
   text-align: center;
+  cursor: pointer;
+  background-color: #FFD7D7;
+  font-family: 'Shrikhand', cursive;
+  padding: 10px;
+  border-radius: 10px;
+  transition-duration: 400ms;
+}
+.post-author:hover {
+  transform: scale(1.04);
+  background: white;
+}
+
+.post-message {
   background-color: white;
-  box-shadow: 1px 1px 10px  #FD2D01;
   font-size: 15px;
   padding: 10px 5px 10px 5px;
-  margin: 0px 10px 20px 10px;
+  margin-bottom: 10px;
   border-radius: 10px;
 }
+
 .post-image {
-  display: flex;
-  text-align: center;
   width: 100%;
   margin: 5px 0px 20px 0px ;
   justify-content: center;
   border-radius: 15px;
 }
 .post-details {
+  background-color: white;
   border: 1px solid black;
   padding: 10px;
   display: flex;
@@ -160,26 +180,46 @@ li:hover {
   margin: 10px 0px 10px 0px ;
   border-radius: 10px;
 }
+.post-date{
+  font-weight: bold;
+}
 .shadow-gray {
   box-shadow: 1px 1px 10px gray;
 }
+/* CREATE PAGE */
 
-.back-color-white {
-  background-color: white;
+/* Create Post Page CSS */
+.from-post{
+  background: #FFD7D7;
 }
-/* POSTE Page CSS */
+#post-title{
+  font-size: 24px;
+  box-shadow: 0px 1px 6px darkgrey;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 400px;
+  padding: 5px;
+}
 
-label{
-  padding-bottom: 5px;
-    display: block;
-    margin-top: 20px;
+#post-content{
+  box-shadow: 0px 1px 6px darkgrey;
+  margin-bottom: 20px;
+  width: 800px;
+  height: 200px;
+  padding: 5px;
+  border-radius: 5px;
 }
+textarea{
+resize : none;
+}
+
 .user-id-email {
+  font-family: 'Shrikhand', cursive;
   text-align: center;
   width: 20%;
   margin: 10px 10px 30px 10px;
-  border: 1px solid #FFD7D7;
-  box-shadow: -2px 1px 10px #FD2D01;
+  border: 3px solid #FFD7D7;
+  background: #FFD7D7;
   border-radius: 15px;
 }
 
@@ -188,54 +228,45 @@ label{
 }
 
 button{
+  font-family: 'Shrikhand', cursive;
   padding: 5px;
+  width: 100px;
   cursor: pointer;
   border-radius: 10px;
+  color: #FD2D01;
+  border: 1px solid black;
+}
+button:active{
+  color: black;
   background: linear-gradient(#FFD7D7,#FD2D01);
+  transform: scale(1.03);
+  opacity: 0.8;
 }
 
 .addBtton{
   text-align: end;
   margin-right: 30px;
 }
+#addtopost{
+  color: black;
+  padding: 10px;
+}
 
 .form-post{
-  margin: 10px 10px 50px 10px;
-  border-radius: 10px;
-  box-shadow: 1px 1px 10px #fd2d01;
-  padding: 20px;
+  padding: 0px 20px 25px 30px;
+}
+.form-background{
+  padding: 10px 15px 10px 15px;
+  border-radius: 15px;
+  background: #FFD7D7;
 }
 
-#title-add-post {
-  width: 75%;
-  background-color: white;
-  box-shadow: -2px 1px 10px  #FD2D01;
-  border-color: #FD2D01;
-  border-radius: 15px;
-  margin-left: 10px;
-  padding: 5px 0px 5px 0px;
-}
-.post-title{
-  background-color: white;
-  box-shadow: 1px 1px 10px  #FD2D01;
-  border-color: #FD2D01;
-  border-radius: 10px;
-  padding: 15px 0px 15px 0px;
-}
 ul
 {
   list-style-type: none;
   padding: 0;
 }
-#text-post {
-  background-color: white;
-  box-shadow: 1px 1px 10px #FD2D01;
-  border-radius: 10px;
-  margin: 0px 10px 10px 10px;
-  height: 100px;
-  border-color: #FD2D01;
-  width: 75%;
-}
+
 .text-to-post{
   background-color: white;
   box-shadow: 1px 1px 10px #FD2D01;
@@ -245,26 +276,44 @@ ul
   border-color: #FD2D01;
   width: 100%;
 }
+
 #post-image {
-  text-align: center;
-  padding: 10px 20px;
-
-}
-.label-file {
-  cursor: pointer;
-  color: #FD2D01;
-  font-weight: bold;
-}
-
-.input-file {
   display: none;
 }
-/* FOOTER CSS */
-.footer-container {
+
+.label-file {
+  cursor: pointer;
+  display: block;
+  padding: 14px 20px;
+  background: #ff3f19;
+  color: #fff;
+  font-size: 1em;
+  cursor: pointer;
+  width: 16%;
+  font-family: 'Shrikhand', cursive;
+  border-radius: 6px;
+}
+
+.add-post-item{
+  margin-top: 25px;
+}
+
+.flex-form{
   display: flex;
   justify-content: space-between;
-  background-color: #4E5166;
+  align-items: center;
+}
+
+/* FOOTER CSS */
+.footer-barre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFD7D7;
   height: 200px;
+}
+.footer-container{
+  font-size: 20px;
 }
 
 .logo-size{
@@ -274,4 +323,110 @@ ul
 
 .back-color-footer{
   background-color: #4E5166;
+}
+
+/* Media Queries tablette Portrait 900px */
+@media screen and (max-width: 900px){
+
+  /* Header  AND Nav CSS */
+  .flex-link{
+    justify-content: space-between;
+  }
+
+  .bar-Nav{
+    display: initial;
+    text-align: center;
+  }
+
+  .logo-picture{
+    position: relative;
+    left: 20%;
+    display: none;
+  }
+  /* Create Page CSS 900px */
+  #post-content{
+    width: 700px;
+  }
+}
+@media screen and (max-width: 791px){
+  #post-content{
+    width: 600px;
+  }
+}
+
+/* Media Queries 768px */
+@media screen and (max-width: 769px){
+
+  /* Header  AND Nav CSS 768px */
+  .nav-container{
+    padding: 0;
+  }
+  .logo-logout{
+    padding: 0;
+  }
+  
+/* HOME CSS */
+  /* POST CARD CSS 768px */
+  .bloc-center{
+    padding: 10px 10px 10px 20px;
+  }
+  .posts-item{
+    margin: 15px 25px 15px 25px;
+  }
+  .post-title{
+    width: auto;
+    margin: 0;
+  }
+  .post-author{
+    margin-bottom: 10px;
+  }
+
+  .flex-up{
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .post-date{
+    text-align: center;
+    font-size: 14px;
+  }
+  .post-details{
+    display: block;
+    text-align: center;
+  }
+  button{
+    margin: 12px;
+    font-size: 14px;
+    width: 100px;
+  }
+
+  /* Create Page CSS  768px */
+  .user-id-email{
+    width: auto;
+  }
+  #post-title{
+    width: 300px;
+  }
+  #post-content{
+    width: 300px;
+  }
+  .label-file{
+    width: auto;
+  }
+  .addBtton{
+    margin: 0;
+  }
+
+  /* Auth Page CSS 768px*/
+  #sign-up-form{
+    text-align: center;
+    padding: 40px 0px 40px 0px;
+  }
+  #email{
+    width: 300px;
+  }
+  #password{
+    margin-bottom: 20px;
+    width: 300px;
+  }
 }

@@ -1,52 +1,37 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Logout from '../../assets/logo-groupomania/logo-logout.png';
-import UidContext from '../../utils/context'
+import Logout from '../../assets/logo-groupomania/logout.png';
 
 const Navigation = () => {
-	const uid = useContext(UidContext);
-	console.log(uid);
 	return (
 		<nav>
-			{uid ? (
-				<ul>
-					<div className='flex-link'>
-						<li>
-							<Link to="/">Home</Link>
-						</li>
-					</div>	
-					<div className='flex-link'>
-						<li>
-							<Link to="/post">Post</Link>
-						</li>
-					</div>	
-					<div className='flex-link'>
-						<li>
-							<Link to="/auth">Auth</Link>
-						</li>
-					</div>	
-				</ul>
-			) : (
 			<ul>
-				<div className="nav-container">
-					<div className='flex-link'>
+				<div className="flex-link">
+					<div className='nav-container'>
 						<li>
 							<Link to="/">Home</Link>
 						</li>
 					</div>	
-					<div className='flex-link'>
+					<div className='nav-container'>
 						<li>
-							<Link to="/post">Post</Link>
+							<Link to="/create">Create</Link>
+						</li>
+					</div>	
+					<div className='nav-container'>
+						<li>
+							<Link to="/signup">Signup</Link>
 						</li>
 					</div>
-					<div className="logo-logout">
-						<Link to="/auth">
-							<img src={Logout} aria-hidden alt="logout"></img>
-						</Link>  
-					</div>	
-				</div>
+					<div className='nav-container'>
+						<li>
+							<Link to="/signin">Signin</Link>
+						</li>
+					</div>
+						<Link to="">
+							<img src={Logout} className='logo-logout' aria-hidden alt="logout"></img>
+						</Link>
+				</div>			
 			</ul>	
-			)}
 		</nav>
 	);
 }

@@ -14,12 +14,6 @@ const PostForm = () => {
 		console.log(postContent);
 		console.log(postImage);
 
-		// Vérifier que les champs sont bien saisis
-		// -- Checker Regex, non vide, etc
-
-		// Envoyer les données au backend
-		// -- Fetch ?
-
 
 		let formData = new FormData();
 		formData.append('post', JSON.stringify({
@@ -51,29 +45,22 @@ const PostForm = () => {
 		<li className='add-post-item'>
 			<div className="user-id-email">email User Id </div>
 			<div className="form-post">
-				<form onSubmit={handleSubmit} method="post" action="">
-					<label htmlFor="title">Titre du post</label>
-					<input type="text" id="post-title" name="post-title" 
+				<form onSubmit={handleSubmit} method="post" action="" className='form-background'>
+					<label htmlFor="title" className='color-black' >Post title :</label>
+					<input type="text" id="post-title" name="post-title" placeholder='It was amazing...'
 						required
 						minLength="3"
 						maxLength="30"
-						size="40">
+						>
 					</input>
-					<br />
-					<label htmlFor="texte">Quoi de neuf ?</label>
-					<div className="flex-from">
-						<input type="text" id="post-content" name="post-content" 
-							required
-							minLength="0"
-							maxLength="250"
-							size="200">
-						</input>
-						<label htmlFor="post-image" className="label-file">Choisir une image</label>
+					<label htmlFor="texte" className='color-black'>What's new ?</label>
+					<textarea id="post-content" name="content"></textarea>
+					<div className="flex-form">
+						<label htmlFor="post-image" className="label-file">Add picture →</label>
 						<input id="post-image" className="input-file" type="file" name="post-image" />
 						<div className="error-message"></div>
-						<br />
 						<div className="addBtton">
-							<button type='submit' id="addToPost">Publication</button>
+							<button type='submit' id="addtopost">Publish</button>
 						</div>
 					</div>
 				</form>

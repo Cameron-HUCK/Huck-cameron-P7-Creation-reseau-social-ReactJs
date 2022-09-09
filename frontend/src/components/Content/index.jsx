@@ -1,16 +1,18 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from '../../pages/Home';
-import Auth from '../../pages/Auth';
-import Post from '../../pages/Post';
+import Signin from '../../pages/Auth/Signin';
+import Signup from '../../pages/Auth/Signup';
+import Create from '../../pages/Post';
 
 const Content = () => {
 	return (
 		<div className="content">
 			<Routes>
 				<Route path="/" element={<Home/>} />
-				<Route path="/auth" element={<Auth/>} />
-				<Route path="/post" element={<Post/>} />
+				<Route path="/Create" element={<Create/>} />
+				<Route path="/signup" element={<Signup/>} />
+				<Route path="/signin" element={<Signin/>} />
 			</Routes>
 		</div>
 	);
