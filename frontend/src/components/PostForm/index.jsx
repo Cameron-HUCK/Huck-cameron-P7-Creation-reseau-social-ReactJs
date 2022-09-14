@@ -30,7 +30,11 @@ const PostForm = () => {
 		)
 		.then(function(res) {
 			if(res.ok) {
+				window.location = '/';
 				return res.json();
+			}else{
+				let errorMessage = document.querySelector(".form-post");
+				errorMessage.textContent = "Il y a eu un problème avec la prise de votre commande";
 			}
 		})
 		.then(function(data) {

@@ -12,6 +12,78 @@ code {
     monospace;
 }
 
+/*Loader*/
+.show-box {
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  z-index: 1000;
+  background: linear-gradient(#FFD7D7, #FFD7D7);
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation-name: animation-back;
+  animation-duration: 2000ms;
+  animation-timing-function: ease-in-out;
+  animation-delay: 1500ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: both;
+}
+@keyframes animation-back {
+  0%{
+
+      transform: scale(1)
+  }
+  20%{
+      transform: scale(4)
+  }
+  100% {
+      transform: scale(0);
+      opacity: .5; 
+  }
+}
+
+.loader
+{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+  width: 120px;
+  height: 120px;
+  animation-name: animation-loader;
+  animation-duration: 2000ms;
+  animation-timing-function: ease-in-out;
+  animation-delay: 0ms;
+  animation-iteration-count: 1;
+  animation-direction: normal;
+  animation-fill-mode: both;
+}
+@keyframes animation-loader {
+  0%{
+    transform: scale(1)
+  }
+  20%{
+      transform: scale(6)
+  }
+  100% {
+      transform: scale(0);
+      opacity: .5; 
+  }
+}
+
+.title-load
+{
+  font-family: 'Shrikhand', cursive;
+  background: #FD2D01;
+  background-clip: border-box;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 20px;
+}
+
 /*color */
 .color-black{
   color: black;
@@ -127,6 +199,7 @@ label{
   padding: 20px;
   border: 1px solid black;
   background-color: #FFD7D7;
+  border-radius: 15px;
 }
 .flex-up {
   display: flex;

@@ -23,6 +23,8 @@ const SignUpForm = () => {
       if(res.data.errors) {
         emailError.textContent = res.data.errors.email;
         passwordError.textContent = res.data.errors.password;
+      } else {
+        window.location = '/signin';
       }
     })
     .catch((err) => console.log(err));
