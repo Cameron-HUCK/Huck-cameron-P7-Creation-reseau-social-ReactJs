@@ -2,6 +2,7 @@
 const express = require('express');
 const Post = require('../models/post');
 const User = require('../models/user');
+const Moment = require('moment')
 const fs = require('fs');
 
 // Allows you to create and add a post

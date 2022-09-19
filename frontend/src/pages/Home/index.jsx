@@ -33,10 +33,12 @@ function Home () {
             <ul id="posts-list">
               {posts.map((post, index) => (
                 <Post
+                  id={post._id}
                   title={post.title}
                   message={post.message}
                   imageUrl={post.imageUrl}
                   userId={post.userId}
+                  createdAt={post.createdAt}
                 />
               ))}
             </ul>

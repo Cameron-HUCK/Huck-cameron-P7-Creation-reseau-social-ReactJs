@@ -9,6 +9,7 @@ const postSchema = mongoose.Schema({
   dislikes: { type: Number, default: 0 },
   usersLiked: { type: ['String<userID>']},
   usersDisliked: { type:['String<userID>']},
-});
+},
+{timestamps: true,});
 
 module.exports = mongoose.model('Post', postSchema);``
