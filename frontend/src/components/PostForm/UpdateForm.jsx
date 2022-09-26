@@ -1,14 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
-const UpdateForm = (props) => {
+const UpdateForm = () => {
+
 	const [postsUpdate, setpostsUpdate] = useState([]);
+	//Recuperation de l'id
+	useEffect(() => {
+		fetch(`http://localhost:4000/api/post`)
+		  .then(function (res) {
+			if (res.ok) {
+			  return res.json();
+			}
+		  })
+		  .then(function (data) {
+			setpostsUpdate(data);
+		  })
+		  .catch(function (err) {
+			console.log(err);
+		  })
+	  }, [])
+
+	// modificatiion
 	async function handleSubmit(e) {
 		e.preventDefault();
 		const requestOptions = {
 			method: 'PUT',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ title: 'React PUT Request Example' })
+			body: JSON.stringify({postsUpdate})
 		};
+
 		const response = await fetch('http://localhost:4000/api/post/', requestOptions);
         const data = await response.json();
         setpostsUpdate(data.id);
@@ -18,7 +37,7 @@ const UpdateForm = (props) => {
 	
 	return (
 		<li className='add-post-item'>
-			<div className="user-id-email">{props.id} = </div>
+			<div className="user-id-email">id post = </div>
 			<div className="form-post">
 				<form onSubmit={handleSubmit} method="post" action="" className='form-background'>
 					<label htmlFor="title" className='color-black' >Post title :</label>
