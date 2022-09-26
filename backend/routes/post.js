@@ -19,8 +19,8 @@ router.delete('/:id', /*auth*/ postCtrl.deletePost);
 // Retrieve a specific POST
 router.get('/:id', /*auth*/ postCtrl.getOnePost);
 // Return all posts in the database
-router.get('/', /*auth*/ postCtrl.getAllPost);
+router.get('/', /*auth*/ postCtrl.getAllPosts);
 //Send likes and dislikes
-router.post('/:id/like', /*auth*/auth, postCtrl.likeAndDislikes);
+router.post('/:id/like', /*auth*/auth, postCtrl.likesAndDislikes);
 
 module.exports = router;

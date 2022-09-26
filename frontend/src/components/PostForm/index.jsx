@@ -1,7 +1,6 @@
 import React from "react";
 
 const PostForm = () => {
-
 	function handleSubmit(e) {
 		e.preventDefault();
 
@@ -30,11 +29,11 @@ const PostForm = () => {
 		)
 		.then(function(res) {
 			if(res.ok) {
-				window.location = '/';
+				window.location = `/${formData.id}`;
 				return res.json();
 			}else{
 				let errorMessage = document.querySelector(".form-post");
-				errorMessage.textContent = "Il y a eu un problème avec la prise de votre commande";
+				errorMessage.textContent = "Il y a eu un problème la publication de votre post";
 			}
 		})
 		.then(function(data) {

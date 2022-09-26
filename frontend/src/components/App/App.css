@@ -84,6 +84,27 @@ code {
   margin-bottom: 20px;
 }
 
+#loader-post{
+ padding: 10px;
+ border: 6px solid #FD2D01;
+ border-radius: 22px;
+ border-bottom-color: transparent;
+ animation-name: animation-post;
+ transform:  1s infinite linear;
+ width: 10px;
+ height: 10px;
+}
+
+@keyframes animation-post {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /*color */
 .color-black{
   color: black;
@@ -153,13 +174,13 @@ label{
   margin-bottom: 5px;
 }
 #email{
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 20px;
   width: 400px;
   padding: 2px;
 }
 #password{
-  border-radius: 10px;
+  border-radius: 5px;
   margin-bottom: 10px;
   width: 400px;
   padding: 2px;
@@ -173,13 +194,15 @@ label{
   padding: 15px;
   cursor: pointer;
   font-size: 15px;
-  background: #FFD7D7;
+  background: #FD2D01;
+  color: white;
+  font-family: 'Shrikhand', cursive;
+  font-size: 14px;
+
 }
 .validate-button:active{
-  background: linear-gradient(#FFD7D7,#FD2D01);
   transform: scale(1.03);
   opacity: 0.8;
-  color: white;
 }
 
 /* HOME CSS */
@@ -438,9 +461,7 @@ ul
   }
 
   .logo-picture{
-    position: relative;
-    left: 20%;
-    display: none;
+    margin: 0;
   }
   /* Create POST Page CSS 900px */
   #post-content{
@@ -482,10 +503,16 @@ ul
     width: auto;
     margin: 0;
   }
-  .post-author{
-    margin-bottom: 10px;
+  .flex-detail{
+    margin-top: 5px;
   }
-
+  .post-image{
+    margin: 0;
+  }
+  .post-author{
+    font-size: 12px;
+    margin: 0;
+  }
   .flex-up{
     display: block;
     margin-bottom: 10px;

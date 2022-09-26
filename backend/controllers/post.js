@@ -73,14 +73,14 @@ exports.getOnePost = (req, res, next) => {
 }
 
 // Select all posts
-exports.getAllPost = (req, res, next) => {
-  Post.find()
-  .then(post => res.status(200).json(post))
+exports.getAllPosts = (req, res, next) => {
+  Post.find().sort({ createdAt: 'desc'})
+  .then(posts => res.status(200).json(posts))
   .catch(error => res.status(400).json({ error }));
 }
 
 //Allows you to put a "I like" or "dislike"
-exports.likeAndDislikes = (req, res, next) => {
+exports.likesAndDislikes = (req, res, next) => {
   // Identification of the post
   Post.findOne({_id:req.params.id})
   .then(async post => {
