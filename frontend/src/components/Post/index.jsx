@@ -1,6 +1,5 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate} from 'react-router-dom';
-import deletePost from "./delete-post";
 
 
 function Post(props) {
@@ -13,7 +12,17 @@ function Post(props) {
 
 	//Modification du format de la date
 	const date = new Date(props.createdAt);
-	
+
+	// Suppression
+
+	const deletePost = useEffect(() => {
+		// DELETE request using fetch inside useEffect React hook
+		fetch(`http://localhost:4000/api/post/${props.id}`, { method: 'DELETE' })
+			.then(() => this.props('Delete successful'));
+			window.location.reload();
+	// empty dependency array means this effect will only run once (like componentDidMount in classes)
+	}, []);
+
 	return (
 		<li id={'post-'+props.id} className="posts-item shadow-gray" data-id={props.id}>
 			<div className="flex-up">
