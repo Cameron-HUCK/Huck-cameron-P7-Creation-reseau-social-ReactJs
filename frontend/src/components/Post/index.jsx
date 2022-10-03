@@ -1,8 +1,48 @@
-import React, { useEffect } from "react";
-import { useNavigate} from 'react-router-dom';
-
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Post(props) {
+	// Like and dislike
+	const [like, setlike] = useState(100);
+	const [dislike, setdislike] = useState(4);
+
+	const [likeactive, setlikeactive] = useState(false);
+	const [dislikeactive, setdislikeactive] = useState(false);
+	// Like
+	function likef() {
+		if(likeactive){
+			setlikeactive(false)
+			setlike(like-1)
+			console.log('1')
+		}else{
+			setlikeactive(true)
+			setlike(like+1)
+			console.log('2')
+			if(dislikeactive){
+				setdislikeactive(false)
+				setlike(like+1)
+				setdislike(dislike-1)
+				console.log('3')
+			}
+		}
+	}
+
+	// Dislike
+	function dislikef(){
+		if(dislikeactive){
+			setdislikeactive(false)
+			setdislike(dislike-1)
+		}else{
+			setdislikeactive(true)
+			setdislike(dislike+1)
+			if(likeactive){
+				setlikeactive(false)
+				setdislike(dislike+1)
+				setlike(like-1)
+			}
+		}
+	}
+
 	// Redirection vers la page du post
 	let navigate = useNavigate();
 	
@@ -13,15 +53,30 @@ function Post(props) {
 	//Modification du format de la date
 	const date = new Date(props.createdAt);
 
-	// Suppression
-
-	const deletePost = useEffect(() => {
-		// DELETE request using fetch inside useEffect React hook
-		fetch(`http://localhost:4000/api/post/${props.id}`, { method: 'DELETE' })
-			.then(() => this.props('Delete successful'));
-			window.location.reload();
-	// empty dependency array means this effect will only run once (like componentDidMount in classes)
-	}, []);
+	// Suppression DELETE
+	const deletePost = (data) => {
+		if(window.confirm("Êtes-vous sur(e) de vouloir supprimer le post ?")) {
+			// DELETE request using fetch inside useEffect React hook
+			fetch(
+				`http://localhost:4000/api/post/${props.id}`,
+				{
+					method: 'DELETE'
+				}
+			)
+			.then(function(res) {
+				if(res.ok) {
+					return res.json();
+				}
+			})
+			.then(function(data) {
+				document.getElementById(`post-${props.id}`).remove();
+			})
+			.catch(function(err) {
+				alert(err);
+				console.log(err);
+			});
+		}
+	}
 
 	return (
 		<li id={'post-'+props.id} className="posts-item shadow-gray" data-id={props.id}>
@@ -33,15 +88,16 @@ function Post(props) {
 			<div className="flex-detail">	
 				<div className="post-author"> {props.userId}</div>
 				<div className='post-date' format="DD-MM-YY">{date.toLocaleString()}</div>
-			</div>	
+			</div>
 			<div className="post-details shadow-gray">
-				<button className="post-likes">♥ Like</button>
-				<button className="post-dislikes">♥ Dislike</button>
+				<button onClick={likef} className={[likeactive ? "post-likes":null, 'button'].join(' ')}>♥ Like</button>
+				<button onClick={dislikef} className={[dislikeactive ? "post-dislikes":null, 'button'].join(' ')}>♥ Dislike</button>
 				<button onClick={routeChange} className="post-update">Update</button>
-				<button onClick={deletePost}className="post-delete">Delete</button>
+				<button onClick={deletePost} className="post-delete">Delete</button>
 			</div>
 		</li>
 	)
 }
 
 export default Post;
+

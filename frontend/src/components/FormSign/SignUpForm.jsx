@@ -49,7 +49,10 @@ const SignUpForm = () => {
       required
       />
       <div className="password-error"></div>
-      <input type="submit" value="Validate registration" className='validate-button'/>
+      
+      <div className="flex-button-end">
+        <input type="submit" value="Validate registration" className='validate-button'/>
+      </div>  
     </form>
   );
 }

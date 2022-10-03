@@ -16,7 +16,9 @@ exports.createPost = async (req, res, next)  => {
 			imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
 		});
 		newPost.save()
-		.then(() => res.status(201).json({ message:'Post saved!'}))
+		.then(() => {
+			res.status(201).json({ message:'Post saved!', id: newPost._id });
+		})
 		.catch(error => res.status(400).json({ error }));
 	} catch (err) {
 		return res.status(400).send(err);

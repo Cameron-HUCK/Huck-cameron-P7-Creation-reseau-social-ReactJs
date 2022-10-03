@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigate} from 'react-router-dom';
 
 const PostForm = () => {
+	let navigate = useNavigate();
 	function handleSubmit(e) {
 		e.preventDefault();
 
@@ -12,7 +14,6 @@ const PostForm = () => {
 		console.log(postTitle);
 		console.log(postContent);
 		console.log(postImage);
-
 
 		let formData = new FormData();
 		formData.append('post', JSON.stringify({
@@ -29,18 +30,16 @@ const PostForm = () => {
 		)
 		.then(function(res) {
 			if(res.ok) {
-				window.location = `/${formData.id}`;
 				return res.json();
-			}else{
-				let errorMessage = document.querySelector(".form-post");
-				errorMessage.textContent = "Il y a eu un problème la publication de votre post";
 			}
 		})
 		.then(function(data) {
-			console.log(data);
+			navigate(`/#post-${data.id}`);
 		})
 		.catch(function(err) {
 			console.log(err);
+			let errorMessage = document.querySelector(".form-post");
+			errorMessage.textContent = "Il y a eu un problème la publication de votre post";
 		})
 	}
 	console.log(handleSubmit);

@@ -169,7 +169,6 @@ a{
 label{
   font-style: italic;
   font-size: 20px;
-  color: #FD2D01;
   display: block;
   margin-bottom: 5px;
 }
@@ -177,16 +176,19 @@ label{
   border-radius: 5px;
   margin-bottom: 20px;
   width: 400px;
-  padding: 2px;
+  padding: 5px;
 }
 #password{
   border-radius: 5px;
   margin-bottom: 10px;
   width: 400px;
-  padding: 2px;
+  padding: 5px;
 }
 #sign-up-form{
-  padding: 20px 0px 40px 30px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 15px;
+  background: #FFD7D7;
+  margin: 20px;
 }
 .validate-button{
   font-style: italic;
@@ -204,7 +206,9 @@ label{
   transform: scale(1.03);
   opacity: 0.8;
 }
-
+.flex-button-end{
+  text-align: end;
+}
 /* HOME CSS */
 #posts {
   margin-top: 25px;
@@ -302,6 +306,14 @@ label{
 .shadow-gray {
   box-shadow: 1px 1px 10px gray;
 }
+.post-likes{
+  background: linear-gradient(#FFD7D7,#FD2D01);
+  color: black;
+}
+.post-dislikes{
+  background: linear-gradient(#FFD7D7,#FD2D01);
+  color: black;
+}
 /* CREATE PAGE */
 
 /* Create Post Page CSS */
@@ -309,7 +321,6 @@ label{
   background: #FFD7D7;
 }
 #post-title{
-  font-size: 24px;
   box-shadow: 0px 1px 6px darkgrey;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -332,8 +343,8 @@ resize : none;
 .user-id-email {
   font-family: 'Shrikhand', cursive;
   text-align: center;
-  width: 20%;
-  margin: 10px 10px 30px 10px;
+  width: 33%;
+  margin: 10px 30px 30px 30px;
   border: 3px solid #FFD7D7;
   background: #FFD7D7;
   border-radius: 15px;
@@ -354,7 +365,6 @@ button{
 }
 button:active{
   color: black;
-  background: linear-gradient(#FFD7D7,#FD2D01);
   transform: scale(1.03);
   opacity: 0.8;
 }
@@ -364,9 +374,15 @@ button:active{
   margin-right: 30px;
 }
 #addtopost{
-  background-color: #ff2a00;
-  color: #fff;
-  padding: 10px;
+  font-style: italic;
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  background: #FD2D01;
+  color: white;
+  font-family: 'Shrikhand', cursive;
+  font-size: 14px;
 }
 
 .form-post{
@@ -553,6 +569,9 @@ ul
   }
 
   /* Auth Page CSS 768px*/
+  .flex-button-end{
+    text-align: center;
+  }
   #sign-up-form{
     text-align: center;
     padding: 40px 0px 40px 0px;

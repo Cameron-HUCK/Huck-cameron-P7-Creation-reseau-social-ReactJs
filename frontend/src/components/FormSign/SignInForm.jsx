@@ -31,7 +31,7 @@ const SignInForm = () => {
   }
   
   return (
-      <form action="" onSubmit={handleLogin}id="sign-up-form">
+      <form action="" onSubmit={handleLogin} id="sign-up-form">
         <label htmlFor="email" className='flex-mail'>Email :</label>
         <input 
         type="text" 
@@ -52,7 +52,9 @@ const SignInForm = () => {
         required
         />
         <div className="password-error"></div>
-        <input type="submit" value=" Se connecter" className='validate-button' />
+        <div className="flex-button-end">
+          <input type="submit" value=" Se connecter" className='validate-button' />
+        </div>  
      </form>
   );
 }
