@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 
 function Post(props) {
 	// Like and dislike
-	const [like, setlike] = useState(100);
-	const [dislike, setdislike] = useState(4);
+	const [like, setlike] = useState(props.likes);
+	const [dislike, setdislike] = useState(props.dislike);
 
 	const [likeActive, setlikeActive] = useState(false);
 	const [dislikeActive, setdislikeActive] = useState(false);

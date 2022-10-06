@@ -21,6 +21,6 @@ router.get('/:id', /*auth*/ postCtrl.getOnePost);
 // Return all posts in the database
 router.get('/', /*auth*/ postCtrl.getAllPosts);
 //Send likes and dislikes
-router.post('/:id/like', /*auth*/auth, postCtrl.likesAndDislikes);
+router.post('/:id/like', /*auth*/ postCtrl.likesAndDislikes);
 
 module.exports = router;

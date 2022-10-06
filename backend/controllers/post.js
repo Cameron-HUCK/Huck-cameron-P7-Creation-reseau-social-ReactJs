@@ -96,7 +96,6 @@ exports.likesAndDislikes = (req, res, next) => {
       let like = req.body.like;
       let usersLiked = post.usersLiked;
       let usersDisliked = post.usersDisliked
-      console.log('vghchjycdjy')
       switch (like){
         case 1:
         usersLiked.addToSet(userId);
