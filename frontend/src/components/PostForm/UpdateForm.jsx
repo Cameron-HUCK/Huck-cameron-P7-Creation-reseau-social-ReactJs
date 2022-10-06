@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 
 const UpdateForm = () => {
 
+	let navigate = useNavigate();
 	const [postsUpdate, setpostsUpdate] = useState([]);
 
 	//Recuperation de l'id
@@ -29,15 +31,35 @@ const UpdateForm = () => {
 	// MODIFICATION PUT
 	async function handleSubmit(e) {
 		e.preventDefault();
-		const requestOptions = {
-			method: 'PUT',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({postsUpdate})
-		};
 
-		const response = await fetch(`http://localhost:4000/api/post/${postId}`, requestOptions);
-        const data = await response.json();
-        setpostsUpdate(data.id);
+
+		console.log(document.getElementById('post-title'));
+
+		let formData = new FormData();
+		formData.append('post', JSON.stringify({
+			title: document.getElementById('post-title').value,
+			message: document.getElementById('post-content').value												
+		}));
+		formData.append('image', document.getElementById('post-image').files[0]);
+		fetch(
+			`http://localhost:4000/api/post/${postsUpdate._id}`,
+			{
+				method: 'PUT',
+				body: formData
+			}
+		)
+		.then(function(res) {
+			if(res.ok) {
+				return res.json();
+			}
+		})
+		.then(function(data) {
+			navigate(`/#post-${data.id}`);
+		})
+		.catch(function(err) {
+			alert(err);
+			console.log(err);
+		});
 	}
 	return (
 		<li className='add-post-item'>

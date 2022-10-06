@@ -12,7 +12,6 @@ const rotate = keyframes`
     transform: rotate(360deg);
     }
 `
-
 export const Loader = styled.div`
 
   animation: ${rotate} 1s infinite linear;
@@ -23,13 +22,14 @@ export const Loader = styled.div`
   width: 10px;
   height: 10px;
 `
+
 function Home() {
 
   const [posts, setPosts] = useState([]);
   const [isDataLoading, setDataLoading] = useState(true);
 
   useEffect(() => {
-    setDataLoading(true)
+    setDataLoading(true);
     fetch(`http://localhost:4000/api/post`)
       .then(function (res) {
         if (res.ok) {
@@ -66,6 +66,8 @@ function Home() {
                   imageUrl={post.imageUrl}
                   userId={post.userId}
                   createdAt={post.createdAt}
+                  likes={post.likes}
+                  dislikes={post.dislikes}
                 />
               ))}
             </ul>

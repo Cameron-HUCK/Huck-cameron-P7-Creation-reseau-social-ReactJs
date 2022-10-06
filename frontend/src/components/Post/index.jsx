@@ -6,21 +6,51 @@ function Post(props) {
 	const [like, setlike] = useState(100);
 	const [dislike, setdislike] = useState(4);
 
-	const [likeactive, setlikeactive] = useState(false);
-	const [dislikeactive, setdislikeactive] = useState(false);
+	const [likeActive, setlikeActive] = useState(false);
+	const [dislikeActive, setdislikeActive] = useState(false);
 	// Like
 	function likef() {
-		if(likeactive){
-			setlikeactive(false)
-			setlike(like-1)
-			console.log('1')
+		if(likeActive){
+			setlikeActive(false)
+			fetch(`http://localhost:4000/${props.id}/like`,
+					{
+						method: 'POST',
+					}
+				)
+				.then(function (res) {
+					if (res.ok) {
+					return res.json();
+					}
+				})
+				.then(function (data) {
+					setlike(like-1)
+					console.log('1')
+				})
+				.catch(function (err) {
+					console.log(err);
+				})
 		}else{
-			setlikeactive(true)
-			setlike(like+1)
-			console.log('2')
-			if(dislikeactive){
-				setdislikeactive(false)
-				setlike(like+1)
+			setlikeActive(true)
+			fetch(`http://localhost:4000/${props.id}/like`,
+					{
+						method: 'POST',
+					}
+				)
+				.then(function (res) {
+					if (res.ok) {
+					return res.json();
+					}
+				})
+				.then(function (data) {
+					setlike(like+1)
+					console.log('2')
+				})
+				.catch(function (err) {
+					console.log(err);
+				})
+			if(dislikeActive){
+				setdislikeActive(false)
+				setdislike(like+1)
 				setdislike(dislike-1)
 				console.log('3')
 			}
@@ -29,14 +59,14 @@ function Post(props) {
 
 	// Dislike
 	function dislikef(){
-		if(dislikeactive){
-			setdislikeactive(false)
+		if(dislikeActive){
+			setdislikeActive(false)
 			setdislike(dislike-1)
 		}else{
-			setdislikeactive(true)
+			setdislikeActive(true)
 			setdislike(dislike+1)
-			if(likeactive){
-				setlikeactive(false)
+			if(likeActive){
+				setlikeActive(false)
 				setdislike(dislike+1)
 				setlike(like-1)
 			}
@@ -90,8 +120,8 @@ function Post(props) {
 				<div className='post-date' format="DD-MM-YY">{date.toLocaleString()}</div>
 			</div>
 			<div className="post-details shadow-gray">
-				<button onClick={likef} className={[likeactive ? "post-likes":null, 'button'].join(' ')}>♥ Like</button>
-				<button onClick={dislikef} className={[dislikeactive ? "post-dislikes":null, 'button'].join(' ')}>♥ Dislike</button>
+				<button onClick={likef} className={[likeActive ? "post-likes":null, 'button'].join(' ')}>♥ Like</button>
+				<button onClick={dislikef} className={[dislikeActive ? "post-dislikes":null, 'button'].join(' ')}>♥ Dislike</button>
 				<button onClick={routeChange} className="post-update">Update</button>
 				<button onClick={deletePost} className="post-delete">Delete</button>
 			</div>

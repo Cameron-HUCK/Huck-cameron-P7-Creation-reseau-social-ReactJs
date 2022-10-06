@@ -27,6 +27,7 @@ exports.createPost = async (req, res, next)  => {
 
 // Allows you to modify the post information
 exports.modifyPost = (req, res, next) => {
+
   const postObject = req.file ?
   {
     ...JSON.parse(req.body.post),
@@ -34,8 +35,9 @@ exports.modifyPost = (req, res, next) => {
   }:
   //spread Operator
   {
-    ...req.body.post
+    ...JSON.parse(req.body.post)
   };
+
   Post.findOne({ _id: req.params.id })
   .then(async post => {
     const filename = post.imageUrl.split('/images/')[1];
@@ -94,7 +96,7 @@ exports.likesAndDislikes = (req, res, next) => {
       let like = req.body.like;
       let usersLiked = post.usersLiked;
       let usersDisliked = post.usersDisliked
-
+      console.log('vghchjycdjy')
       switch (like){
         case 1:
         usersLiked.addToSet(userId);
