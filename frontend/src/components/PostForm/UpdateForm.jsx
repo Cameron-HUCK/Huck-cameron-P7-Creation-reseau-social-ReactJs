@@ -31,10 +31,6 @@ const UpdateForm = () => {
 	// MODIFICATION PUT
 	async function handleSubmit(e) {
 		e.preventDefault();
-
-
-		console.log(document.getElementById('post-title'));
-
 		let formData = new FormData();
 		formData.append('post', JSON.stringify({
 			title: document.getElementById('post-title').value,
@@ -61,6 +57,7 @@ const UpdateForm = () => {
 			console.log(err);
 		});
 	}
+	
 	return (
 		<li className='add-post-item'>
 			<div className="user-id-email">Id post = {postId} </div>

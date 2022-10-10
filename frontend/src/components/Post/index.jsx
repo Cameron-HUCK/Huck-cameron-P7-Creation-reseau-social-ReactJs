@@ -6,15 +6,16 @@ function Post(props) {
 	const [like, setlike] = useState(props.likes);
 	const [dislike, setdislike] = useState(props.dislike);
 
-	const [likeActive, setlikeActive] = useState(false);
-	const [dislikeActive, setdislikeActive] = useState(false);
+	const [likeActive, setLikeActive] = useState(false);
+	const [dislikeActive, setDislikeActive] = useState(false);
+	
 	// Like
 	function likef() {
 		if(likeActive){
-			setlikeActive(false)
-			fetch(`http://localhost:4000/${props.id}/like`,
+			setLikeActive(false)
+			fetch(`http://localhost:4000/api/post/${props.id}/like`,
 					{
-						method: 'POST',
+						method: 'post'
 					}
 				)
 				.then(function (res) {
@@ -30,10 +31,10 @@ function Post(props) {
 					console.log(err);
 				})
 		}else{
-			setlikeActive(true)
-			fetch(`http://localhost:4000/${props.id}/like`,
+			setLikeActive(true)
+			fetch(`http://localhost:4000/api/post/${props.id}/like`,
 					{
-						method: 'POST',
+						method: 'POST'
 					}
 				)
 				.then(function (res) {
@@ -49,10 +50,25 @@ function Post(props) {
 					console.log(err);
 				})
 			if(dislikeActive){
-				setdislikeActive(false)
-				setdislike(like+1)
-				setdislike(dislike-1)
-				console.log('3')
+				setDislikeActive(false)
+				fetch(`http://localhost:4000/api/post/${props.id}/like`,
+					{
+						method: 'POST'
+					}
+				)
+				.then(function (res) {
+					if (res.ok) {
+					return res.json();
+					}
+				})
+				.then(function (data) {
+					setdislike(like+1)
+					setdislike(dislike-1)
+					console.log('3')
+				})
+				.catch(function (err) {
+					console.log(err);
+				})
 			}
 		}
 	}
@@ -60,15 +76,61 @@ function Post(props) {
 	// Dislike
 	function dislikef(){
 		if(dislikeActive){
-			setdislikeActive(false)
-			setdislike(dislike-1)
+			setDislikeActive(false)
+			fetch(`http://localhost:4000/api/post/${props.id}/like`,
+					{
+						method: 'POST'
+					}
+				)
+				.then(function (res) {
+					if (res.ok) {
+					return res.json();
+					}
+				})
+				.then(function (data) {
+					setdislike(dislike-1)
+					console.log('3')
+				})
+				.catch(function (err) {
+					console.log(err);
+				})
 		}else{
-			setdislikeActive(true)
-			setdislike(dislike+1)
+			setDislikeActive(true)
+			fetch(`http://localhost:4000/api/post/${props.id}/like`,
+					{
+						method: 'POST'
+					}
+				)
+				.then(function (res) {
+					if (res.ok) {
+					return res.json();
+					}
+				})
+				.then(function (data) {
+					setdislike(dislike+1)
+				})
+				.catch(function (err) {
+					console.log(err);
+				})
 			if(likeActive){
-				setlikeActive(false)
-				setdislike(dislike+1)
-				setlike(like-1)
+				setLikeActive(false)
+				fetch(`http://localhost:4000/api/post/${props.id}/like`,
+					{
+						method: 'POST'
+					}
+				)
+				.then(function (res) {
+					if (res.ok) {
+					return res.json();
+					}
+				})
+				.then(function (data) {
+					setdislike(dislike+1)
+					setlike(like-1)
+				})
+				.catch(function (err) {
+					console.log(err);
+				})
 			}
 		}
 	}

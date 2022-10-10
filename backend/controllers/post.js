@@ -109,7 +109,7 @@ exports.likesAndDislikes = (req, res, next) => {
           usersDisliked.addToSet(userId);
           break;
         default:
-          res.status(402).send({message: 'Unknown value '})  
+          res.status(400).send({message: 'Unknown value '})  
           break;
       }
       // The function waiting for a response with the word await 
