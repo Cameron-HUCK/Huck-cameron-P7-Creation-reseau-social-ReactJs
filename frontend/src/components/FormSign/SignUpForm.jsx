@@ -42,6 +42,7 @@ const SignUpForm = () => {
 			errorMessage.textContent = "Il y a eu un problème";
 		})
 	}
+  
   return (
     <form action="" onSubmit={handleRegister} id='sign-up-form'>
       <label htmlFor="email" className='flex-mail'>Add your Email :</label>

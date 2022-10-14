@@ -2,137 +2,75 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 function Post(props) {
+
+	console.log('props', props);
+
 	// Like and dislike
-	const [like, setlike] = useState(props.likes);
-	const [dislike, setdislike] = useState(props.dislike);
+	const [like, setLike] = useState(props.likes);
+	const [dislike, setDislike] = useState(props.dislikes);
 
 	const [likeActive, setLikeActive] = useState(false);
 	const [dislikeActive, setDislikeActive] = useState(false);
-	
-	// Like
-	function likef() {
-		if(likeActive){
-			setLikeActive(false)
-			fetch(`http://localhost:4000/api/post/${props.id}/like`,
-					{
-						method: 'post'
-					}
-				)
-				.then(function (res) {
-					if (res.ok) {
-					return res.json();
-					}
-				})
-				.then(function (data) {
-					setlike(like-1)
-					console.log('1')
-				})
-				.catch(function (err) {
-					console.log(err);
-				})
-		}else{
-			setLikeActive(true)
-			fetch(`http://localhost:4000/api/post/${props.id}/like`,
-					{
-						method: 'POST'
-					}
-				)
-				.then(function (res) {
-					if (res.ok) {
-					return res.json();
-					}
-				})
-				.then(function (data) {
-					setlike(like+1)
-					console.log('2')
-				})
-				.catch(function (err) {
-					console.log(err);
-				})
-			if(dislikeActive){
-				setDislikeActive(false)
-				fetch(`http://localhost:4000/api/post/${props.id}/like`,
-					{
-						method: 'POST'
-					}
-				)
-				.then(function (res) {
-					if (res.ok) {
-					return res.json();
-					}
-				})
-				.then(function (data) {
-					setdislike(like+1)
-					setdislike(dislike-1)
-					console.log('3')
-				})
-				.catch(function (err) {
-					console.log(err);
-				})
-			}
+
+	function doLike() {
+		if(likeActive) {
+			updateLikes('0');
+		}
+		else {
+			updateLikes('1');
 		}
 	}
 
-	// Dislike
-	function dislikef(){
-		if(dislikeActive){
-			setDislikeActive(false)
-			fetch(`http://localhost:4000/api/post/${props.id}/like`,
-					{
-						method: 'POST'
-					}
-				)
-				.then(function (res) {
-					if (res.ok) {
-					return res.json();
-					}
-				})
-				.then(function (data) {
-					setdislike(dislike-1)
-					console.log('3')
-				})
-				.catch(function (err) {
-					console.log(err);
-				})
-		}else{
-			setDislikeActive(true)
-			fetch(`http://localhost:4000/api/post/${props.id}/like`,
-					{
-						method: 'POST'
-					}
-				)
-				.then(function (res) {
-					if (res.ok) {
-					return res.json();
-					}
-				})
-				.then(function (data) {
-					setdislike(dislike+1)
-				})
-				.catch(function (err) {
-					console.log(err);
-				})
-			if(likeActive){
-				setLikeActive(false)
-				fetch(`http://localhost:4000/api/post/${props.id}/like`,
-					{
-						method: 'POST'
-					}
-				)
-				.then(function (res) {
-					if (res.ok) {
-					return res.json();
-					}
-				})
-				.then(function (data) {
-					setdislike(dislike+1)
-					setlike(like-1)
-				})
-				.catch(function (err) {
-					console.log(err);
-				})
-			}
+	function doDislike() {
+		if(dislikeActive) {
+			updateLikes('0');
 		}
+		else {
+			updateLikes('-1');
+		}
+	}
+
+	function updateLikes(value) {
+		// Preparing data
+		let data = {
+			userId: '00001',
+			like: value
+		};
+		// Sending data
+		fetch(`http://localhost:4000/api/post/${props.id}/like`,
+			{
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify(data)
+			}
+		)
+		.then(function(res) {
+			if(res.ok) {
+				return res.json();
+			}
+		})
+		.then(function(data) {
+			console.log('data', data);
+			setLike(data.likes);
+			setDislike(data.dislikes);
+			if(data.like === '0') {
+				setLikeActive(false);
+				setDislikeActive(false);
+			}
+			else if(data.like === '1') {
+				setLikeActive(true);
+				setDislikeActive(false);
+			}
+			else if(data.like === '-1') {
+				setLikeActive(false);
+				setDislikeActive(true);
+			}
+		})
+		.catch(function(err) {
+			console.log(err);
+		});
 	}
 
 	// Redirection vers la page du post
@@ -182,8 +120,8 @@ function Post(props) {
 				<div className='post-date' format="DD-MM-YY">{date.toLocaleString()}</div>
 			</div>
 			<div className="post-details shadow-gray">
-				<button onClick={likef} className={[likeActive ? "post-likes":null, 'button'].join(' ')}>♥ Like</button>
-				<button onClick={dislikef} className={[dislikeActive ? "post-dislikes":null, 'button'].join(' ')}>♥ Dislike</button>
+				<button onClick={doLike} className={[likeActive ? "post-likes":null, 'button'].join(' ')}>♥ Like ({like})</button>
+				<button onClick={doDislike} className={[dislikeActive ? "post-dislikes":null, 'button'].join(' ')}>♥ Dislike ({dislike})</button>
 				<button onClick={routeChange} className="post-update">Update</button>
 				<button onClick={deletePost} className="post-delete">Delete</button>
 			</div>
@@ -192,4 +130,3 @@ function Post(props) {
 }
 
 export default Post;
-

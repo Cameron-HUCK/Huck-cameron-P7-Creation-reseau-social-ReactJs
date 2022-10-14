@@ -57,7 +57,7 @@ const UpdateForm = () => {
 			console.log(err);
 		});
 	}
-	
+	console.log(postsUpdate.imageUrl);
 	return (
 		<li className='add-post-item'>
 			<div className="user-id-email">Id post = {postId} </div>

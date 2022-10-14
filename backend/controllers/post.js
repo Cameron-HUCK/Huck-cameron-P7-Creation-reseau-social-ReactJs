@@ -37,15 +37,20 @@ exports.modifyPost = (req, res, next) => {
   {
     ...JSON.parse(req.body.post)
   };
-
   Post.findOne({ _id: req.params.id })
   .then(async post => {
-    const filename = post.imageUrl.split('/images/')[1];
-    fs.unlink(`images/${filename}`, () => {
+    if(!req.file) {
+      const filename = post.imageUrl.split('/images/')[1];
+      fs.unlink(`images/${filename}`, () => {
+        Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
+        .then(() => res.status(200).json({ message: 'Post changed!'}))
+        .catch(error => res.status(400).json({error : "Post not find" }));
+      })
+    }else {
       Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-      .then(() => res.status(200).json({ message: 'Post changed!'}))
-      .catch(error => res.status(400).json({error : "Post not find" }));
-    })
+        .then(() => res.status(200).json({ message: 'Post changed!'}))
+        .catch(error => res.status(400).json({error : "Post not find" }));
+    }
   }
 )}
 
@@ -90,26 +95,30 @@ exports.likesAndDislikes = (req, res, next) => {
   .then(async post => {
     if(!post){
       res.status(404).json({message: "The post does not exist"});
-    // Sinon on envoie la valeur userId  dans le tableau de like de la post
-    }else{
+    }
+    else {
+    	// Sinon on envoie la valeur userId dans le tableau de like de la post
       let userId = req.body.userId;
       let like = req.body.like;
       let usersLiked = post.usersLiked;
-      let usersDisliked = post.usersDisliked
+      let usersDisliked = post.usersDisliked;
       switch (like){
-        case 1:
-        usersLiked.addToSet(userId);
+        case '1':
+          usersDisliked = usersDisliked.filter(element => element !== userId);
+        	usersLiked.addToSet(userId);
           break;
-        case 0:
-          // Array.filter allows you to create a new array with all the values ​​that will be equal to true
+        case '-1':
+          usersLiked = usersLiked.filter(element => element !== userId);
+          usersDisliked.addToSet(userId);
+          break;
+        case '0':
+          // Array.filter allows you to create a new array with all the values that will be equal to true
           usersLiked = usersLiked.filter(element => element !== userId);
           usersDisliked = usersDisliked.filter(element => element !== userId);
           break;
-        case -1:
-          usersDisliked.addToSet(userId);
-          break;
         default:
-          res.status(400).send({message: 'Unknown value '})  
+          res.status(400).send({message: 'Unknown value '});
+          return;
           break;
       }
       // The function waiting for a response with the word await 
@@ -121,8 +130,13 @@ exports.likesAndDislikes = (req, res, next) => {
         likes: likes,
         dislikes: dislikes
       });
-      res.status(200).send({message: 'Modification like made'})
+      res.status(200).send({ message: 'Modification like made', like: like, likes: likes, dislikes: dislikes});
     }
   })
-  .catch(error => res.status(500).json({ error }));
-}
+  .catch((error) => {
+  	console.log(error);
+    res.status(500).json({
+      error: error,
+    });
+  });
+}                                                                                                                                                                          
