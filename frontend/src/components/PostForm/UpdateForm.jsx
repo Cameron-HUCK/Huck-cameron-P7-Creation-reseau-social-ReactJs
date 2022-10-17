@@ -36,7 +36,9 @@ const UpdateForm = () => {
 			title: document.getElementById('post-title').value,
 			message: document.getElementById('post-content').value												
 		}));
+		//if(files[0] === null ){
 		formData.append('image', document.getElementById('post-image').files[0]);
+		//}
 		fetch(
 			`http://localhost:4000/api/post/${postsUpdate._id}`,
 			{
@@ -57,7 +59,6 @@ const UpdateForm = () => {
 			console.log(err);
 		});
 	}
-	console.log(postsUpdate.imageUrl);
 	return (
 		<li className='add-post-item'>
 			<div className="user-id-email">Id post = {postId} </div>

@@ -27,7 +27,6 @@ exports.createPost = async (req, res, next)  => {
 
 // Allows you to modify the post information
 exports.modifyPost = (req, res, next) => {
-
   const postObject = req.file ?
   {
     ...JSON.parse(req.body.post),
@@ -39,7 +38,7 @@ exports.modifyPost = (req, res, next) => {
   };
   Post.findOne({ _id: req.params.id })
   .then(async post => {
-    if(!req.file) {
+    if(!post.imageUrl) {
       const filename = post.imageUrl.split('/images/')[1];
       fs.unlink(`images/${filename}`, () => {
         Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
