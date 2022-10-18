@@ -38,7 +38,7 @@ exports.modifyPost = (req, res, next) => {
   };
   Post.findOne({ _id: req.params.id })
   .then(async post => {
-    if(!post.imageUrl) {
+    if(req.file) {
       const filename = post.imageUrl.split('/images/')[1];
       fs.unlink(`images/${filename}`, () => {
         Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
@@ -129,7 +129,7 @@ exports.likesAndDislikes = (req, res, next) => {
         likes: likes,
         dislikes: dislikes
       });
-      res.status(200).send({ message: 'Modification like made', like: like, likes: likes, dislikes: dislikes});
+      res.status(200).send({ message: 'Modification like made', like: like, likes: likes, dislikes: dislikes });
     }
   })
   .catch((error) => {
@@ -138,4 +138,4 @@ exports.likesAndDislikes = (req, res, next) => {
       error: error,
     });
   });
-}                                                                                                                                                                          
+}                                                                                                                                                                   

@@ -13,19 +13,17 @@ const SignUpForm = () => {
 		let userEmail = document.getElementById('email').value;
 		let userPassword = document.getElementById('password').value;
 
-		console.log(userEmail);
-		console.log(userPassword);
-
-		let formData = new FormData();
-		formData.append('User', JSON.stringify({
-			email: userEmail,
-			password: userPassword
-		}));
-		fetch(
-			`http://localhost:4000/api/auth/signup`,
+		// Sending data
+		fetch(`http://localhost:4000/api/auth/signup`,
 			{
 				method: 'post',
-				body: formData
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					email: userEmail,
+					password: userPassword
+				})
 			}
 		)
 		.then(function(res) {
@@ -34,15 +32,16 @@ const SignUpForm = () => {
 			}
 		})
 		.then(function(data) {
+			console.log('data', data);
 			navigate(`/signin`);
 		})
 		.catch(function(err) {
 			console.log(err);
 			let errorMessage = document.querySelector(".password-error");
 			errorMessage.textContent = "Il y a eu un problème";
-		})
+		});
 	}
-  
+
   return (
     <form action="" onSubmit={handleRegister} id='sign-up-form'>
       <label htmlFor="email" className='flex-mail'>Add your Email :</label>
