@@ -24,9 +24,12 @@ export const Loader = styled.div`
 `
 
 function Home() {
-
+  // Affichage du post
   const [posts, setPosts] = useState([]);
   const [isDataLoading, setDataLoading] = useState(true);
+  
+  const dataToken = fetch('http://localhost:4000/jwtid');
+	console.log(dataToken)
 
   useEffect(() => {
     setDataLoading(true);
@@ -44,8 +47,6 @@ function Home() {
       })
     setDataLoading(false)
   }, [])
-
-  console.log(posts);
   return (
     <section>
       <div className='title'>

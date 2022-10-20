@@ -116,6 +116,9 @@ label{
 .flex-button-end{
   text-align: end;
 }
+.error-password{
+  color: #FD2D01;
+}
 /* HOME CSS */
 #posts {
   margin-top: 25px;

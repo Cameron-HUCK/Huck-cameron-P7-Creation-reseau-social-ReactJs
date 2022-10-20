@@ -1,36 +1,60 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+
 const SignInForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassWord] = useState('');
   let navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    const emailError = document.querySelector('.email-error');
-    const passwordError = document.querySelector('.password-error');
-    axios({
-      method: "post",
-      url:`http://localhost:4000/api/auth/login`,
-      withCredentials: false,
-      data : {
-        email,
-        password,
-      }
-    })
-    .then((res) => {
-      if (res.data.errors){
-        emailError.textContent = res.data.errors.email;
-        passwordError.textContent = res.data.errors.password;
-      } else {
-        navigate('/');
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    })
-  }
+
+    // Récupérer les valeurs des 3 champs à envoyer au serveur : title, content, image
+		let userEmail = document.getElementById('email').value;
+		let userPassword = document.getElementById('password').value;
+
+    //controle input pas vide
+    if (userEmail.trim().length === 0 || userPassword.trim().length === 0){
+      return;
+    }
+    //controle validite email
+    const regExEmail = (value) => {
+      return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
+    }
+    if(!regExEmail(userEmail)){
+      let errorMessage = document.querySelector(".password-error");
+			errorMessage.textContent = "Invalid email or password";
+      return;
+    }
+
+		// Sending data
+		fetch(`http://localhost:4000/api/auth/login`,
+			{
+				method: 'post',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					email: userEmail,
+					password: userPassword
+				})
+			}
+		)
+		.then(function(res) {
+			if(res.ok) {
+				return res.json();
+			}
+		})
+		.then(function(data) {
+			console.log('data', data);
+			navigate(`/`);
+		})
+		.catch(function(err) {
+			console.log(err);
+			let errorMessage = document.querySelector(".password-error");
+			errorMessage.textContent = "Il y a eu un problème";
+		});
+	}
   
   return (
       <form action="" onSubmit={handleLogin} id="sign-up-form">

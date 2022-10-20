@@ -1,4 +1,4 @@
-import React from "react";
+import React  from "react";
 import { useNavigate} from 'react-router-dom';
 
 const PostForm = () => {
@@ -25,7 +25,10 @@ const PostForm = () => {
 			`http://localhost:4000/api/post`,
 			{
 				method: 'post',
-				body: formData
+				body: formData,
+				headers: {
+          		'Authorization': 'Bearer <token>'
+				},
 			}
 		)
 		.then(function(res) {
@@ -45,7 +48,7 @@ const PostForm = () => {
 	console.log(handleSubmit);
 	return (
 		<li className='add-post-item'>
-			<div className="user-id-email">email User Id </div>
+			<div className="user-id-email"></div>
 			<div className="form-post">
 				<form onSubmit={handleSubmit} method="post" action="" className='form-background'>
 					<label htmlFor="title" className='color-black' >Post title :</label>

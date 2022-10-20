@@ -1,11 +1,11 @@
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 
 
 // For the registration of our users
 exports.signup = (req, res, next) => {
-  bcrypt.hash(req.body.password, 10)
+  bcryptjs.hash(req.body.password, 10)
   .then(hash =>  {
     const user = new User({
       email: req.body.email,
@@ -25,7 +25,7 @@ exports.login = (req, res, next) => {
     if (!user) {
       return res.status(401).json({ error: 'Utilisateur non trouvé !' });
     }
-    bcrypt.compare(req.body.password, user.password)
+    bcryptjs.compare(req.body.password, user.password)
     .then(valid => {
       if (!valid) {
         return res.status(401).json({ error: 'Mot de passe incorrect !' });
