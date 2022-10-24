@@ -10,7 +10,7 @@ exports.createPost = async (req, res, next)  => {
 	try {
 		let postData = JSON.parse(req.body.post);
 		let newPost = new Post({
-			userId: 'huck-cameron@hotmail.fr',
+			userId: postData.userId,
 			title: postData.title,
 			message: postData.message,
 			imageUrl:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`

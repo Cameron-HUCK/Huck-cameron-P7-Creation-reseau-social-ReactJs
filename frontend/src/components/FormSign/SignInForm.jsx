@@ -26,7 +26,7 @@ const SignInForm = () => {
 			errorMessage.textContent = "Invalid email or password";
       return;
     }
-
+    
 		// Sending data
 		fetch(`http://localhost:4000/api/auth/login`,
 			{
@@ -46,6 +46,7 @@ const SignInForm = () => {
 			}
 		})
 		.then(function(data) {
+      localStorage.setItem('dataUser', JSON.stringify(data));
 			console.log('data', data);
 			navigate(`/`);
 		})

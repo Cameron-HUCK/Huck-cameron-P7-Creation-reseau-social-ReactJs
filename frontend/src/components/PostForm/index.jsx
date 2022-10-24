@@ -3,6 +3,24 @@ import { useNavigate} from 'react-router-dom';
 
 const PostForm = () => {
 	let navigate = useNavigate();
+	// recuperation localstorage du token, userId
+	function getUserToken() {
+		let dataToken = localStorage.getItem('dataUser');
+		if(dataToken == null) {
+				return {};
+			}
+			try {
+				let dataLocalStorage = JSON.parse(dataToken);
+				return dataLocalStorage;
+			}
+			catch(e) {
+				console.log(e);
+				return {};
+			}
+		};
+		let userToken = getUserToken('token');
+		console.log(userToken.token);
+	
 	function handleSubmit(e) {
 		e.preventDefault();
 
@@ -17,6 +35,7 @@ const PostForm = () => {
 
 		let formData = new FormData();
 		formData.append('post', JSON.stringify({
+			userId: userToken.userId,
 			title: postTitle,
 			message: postContent
 		}));
@@ -27,7 +46,7 @@ const PostForm = () => {
 				method: 'post',
 				body: formData,
 				headers: {
-          		'Authorization': 'Bearer <token>'
+          		'Authorization': `Bearer ${userToken.token}`
 				},
 			}
 		)
@@ -48,7 +67,7 @@ const PostForm = () => {
 	console.log(handleSubmit);
 	return (
 		<li className='add-post-item'>
-			<div className="user-id-email"></div>
+			<div className="user-id-email">{userToken.userId}</div>
 			<div className="form-post">
 				<form onSubmit={handleSubmit} method="post" action="" className='form-background'>
 					<label htmlFor="title" className='color-black' >Post title :</label>

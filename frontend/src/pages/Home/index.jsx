@@ -27,13 +27,33 @@ function Home() {
   // Affichage du post
   const [posts, setPosts] = useState([]);
   const [isDataLoading, setDataLoading] = useState(true);
-  
-  const dataToken = fetch('http://localhost:4000/jwtid');
-	console.log(dataToken)
+  // Recuperation localstorage du token, userId
+	function getUserToken() {
+		let dataToken = localStorage.getItem('dataUser');
+		if(dataToken == null) {
+				return {};
+			}
+			try {
+				let dataLocalStorage = JSON.parse(dataToken);
+				return dataLocalStorage;
+			}
+			catch(e) {
+				console.log(e);
+				return {};
+			}
+		};
+		let userToken = getUserToken('token');
+		console.log(userToken.token);
 
   useEffect(() => {
     setDataLoading(true);
-    fetch(`http://localhost:4000/api/post`)
+    fetch(`http://localhost:4000/api/post`,
+      {
+        headers: {
+          'Authorization': `Bearer ${userToken.token}`
+          },
+      }
+    )
       .then(function (res) {
         if (res.ok) {
           return res.json();

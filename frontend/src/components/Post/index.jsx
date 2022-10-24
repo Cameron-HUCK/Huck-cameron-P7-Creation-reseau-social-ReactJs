@@ -3,7 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 function Post(props) {
 
-	console.log('props', props);
+	// recuperation localstorage dun token, userId
+	function getUserToken() {
+	let dataToken = localStorage.getItem('dataUser');
+	if(dataToken == null) {
+			return {};
+		}
+		try {
+			let dataLocalStorage = JSON.parse(dataToken);
+			return dataLocalStorage;
+		}
+		catch(e) {
+			console.log(e);
+			return {};
+		}
+	};
+	let userToken = getUserToken('token');
+	console.log(userToken.token);
 
 	// Like and dislike
 	const [like, setLike] = useState(props.likes);
@@ -11,7 +27,7 @@ function Post(props) {
 
 	const [likeActive, setLikeActive] = useState(false);
 	const [dislikeActive, setDislikeActive] = useState(false);
-
+	
 	function doLike() {
 		if(likeActive) {
 			updateLikes('0');
@@ -33,7 +49,7 @@ function Post(props) {
 	function updateLikes(value) {
 		// Preparing data
 		let data = {
-			userId: '00001',
+			userId: userToken.userId,
 			like: value
 		};
 		// Sending data
@@ -41,7 +57,8 @@ function Post(props) {
 			{
 				method: 'post',
 				headers: {
-					'Content-Type': 'application/json'
+					'Content-Type': 'application/json',
+					'Authorization': `Bearer ${userToken.token}`
 				},
 				body: JSON.stringify(data)
 			}
@@ -72,14 +89,12 @@ function Post(props) {
 			console.log(err);
 		});
 	}
-
 	// Redirection vers la page du post
 	let navigate = useNavigate();
 	
 	const routeChange = (data)  => {
 		navigate(`/update/${props.id}`);
 	}
-
 	//Modification du format de la date
 	const date = new Date(props.createdAt);
 
@@ -90,7 +105,10 @@ function Post(props) {
 			fetch(
 				`http://localhost:4000/api/post/${props.id}`,
 				{
-					method: 'DELETE'
+					method: 'DELETE',
+					headers: {
+						'Authorization': `Bearer ${userToken.token}`
+					  },
 				}
 			)
 			.then(function(res) {

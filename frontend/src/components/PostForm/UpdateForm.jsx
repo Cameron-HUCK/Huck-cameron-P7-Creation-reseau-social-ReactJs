@@ -6,6 +6,23 @@ const UpdateForm = () => {
 
 	let navigate = useNavigate();
 	const [postsUpdate, setpostsUpdate] = useState([]);
+	// Recuperation localstorage du token, userId
+	function getUserToken() {
+		let dataToken = localStorage.getItem('dataUser');
+		if(dataToken == null) {
+				return {};
+			}
+			try {
+				let dataLocalStorage = JSON.parse(dataToken);
+				return dataLocalStorage;
+			}
+			catch(e) {
+				console.log(e);
+				return {};
+			}
+		};
+		let userToken = getUserToken('token');
+		console.log(userToken.token);
 
 	//Recuperation de l'id
 	const urlParams = useParams();
@@ -41,7 +58,10 @@ const UpdateForm = () => {
 			`http://localhost:4000/api/post/${postsUpdate._id}`,
 			{
 				method: 'PUT',
-				body: formData
+				body: formData,
+				headers: {
+					'Authorization': `Bearer ${userToken.token}`
+				  },
 			}
 		)
 		.then(function(res) {
