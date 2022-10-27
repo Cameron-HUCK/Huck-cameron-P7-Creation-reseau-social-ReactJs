@@ -1,28 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate} from 'react-router-dom';
+import { getUserToken } from "../../utils/lib";
 
 const UpdateForm = () => {
 
 	let navigate = useNavigate();
 	const [postsUpdate, setpostsUpdate] = useState([]);
-	// Recuperation localstorage du token, userId
-	function getUserToken() {
-		let dataToken = localStorage.getItem('dataUser');
-		if(dataToken == null) {
-				return {};
-			}
-			try {
-				let dataLocalStorage = JSON.parse(dataToken);
-				return dataLocalStorage;
-			}
-			catch(e) {
-				console.log(e);
-				return {};
-			}
-		};
-		let userToken = getUserToken('token');
-		console.log(userToken.token);
+
+  	// Recuperation localstorage du token, userId
+  	let userToken = getUserToken();
+  	console.log(userToken.token);
 
 	//Recuperation de l'id
 	const urlParams = useParams();
@@ -35,7 +23,9 @@ const UpdateForm = () => {
 		.then(function (res) {
 		 if (res.ok) {
 		   return res.json();
-		 }
+		 }else {
+			throw res.statusText;
+		}
 		})
 		.then(function (data) {
 			setpostsUpdate(data);
@@ -67,6 +57,8 @@ const UpdateForm = () => {
 		.then(function(res) {
 			if(res.ok) {
 				return res.json();
+			}else {
+				throw res.statusText;
 			}
 		})
 		.then(function(data) {

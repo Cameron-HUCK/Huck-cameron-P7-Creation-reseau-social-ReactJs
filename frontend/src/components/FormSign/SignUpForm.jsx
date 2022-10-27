@@ -41,7 +41,9 @@ const SignUpForm = () => {
 		.then(function(res) {
 			if(res.ok) {
 				return res.json();
-			}
+			}else {
+        throw res.statusText;
+      }
 		})
 		.then(function(data) {
 			console.log('data', data);

@@ -1,8 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Logout from '../../assets/logo-groupomania/logout.png';
+import { useNavigate } from 'react-router-dom';
+import { getUserToken } from "../../utils/lib";
 
 const Navigation = () => {
+  // Recuperation localstorage du token, userId
+  let userToken = getUserToken();
+  console.log(userToken.token);
+
+	// Redirection vers la page du post
+	let navigate = useNavigate();
+	// Logout
+	function removeUserToken(){
+		if (window.confirm("Êtes-vous sur(e) de vouloir vous deconnecté ?")){
+			localStorage.removeItem('dataUser');
+			navigate('signin');
+		}
+	}
 	return (
 		<nav>
 			<ul>
@@ -27,9 +42,9 @@ const Navigation = () => {
 							<Link to="/signin">Signin</Link>
 						</li>
 					</div>
-						<Link to="">
-							<img src={Logout} className='logo-logout' aria-hidden alt="logout"></img>
-						</Link>
+					<li onClick={removeUserToken}>
+						<img  src={Logout} className='logo-logout' aria-hidden alt="logout"></img>
+					</li>	
 				</div>			
 			</ul>	
 		</nav>

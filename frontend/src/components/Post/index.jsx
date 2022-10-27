@@ -1,25 +1,37 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import {getUserToken} from '../../utils/lib'
 
 function Post(props) {
-
-	// recuperation localstorage dun token, userId
-	function getUserToken() {
-	let dataToken = localStorage.getItem('dataUser');
-	if(dataToken == null) {
-			return {};
-		}
-		try {
-			let dataLocalStorage = JSON.parse(dataToken);
-			return dataLocalStorage;
-		}
-		catch(e) {
-			console.log(e);
-			return {};
-		}
-	};
-	let userToken = getUserToken('token');
+	// Recuperation localstorage du token, userId
+	let userToken = getUserToken();
 	console.log(userToken.token);
+	
+	// Recuperation de l'email a partir de l'userId
+	let userEmail = useEffect(() => {
+		fetch(`http://localhost:4000/api/post/email`,
+			{
+				headers: {
+				'Authorization': `Bearer ${userToken.token}`
+				},
+			}
+		)
+		.then(function (res) {
+			if (res.ok) {
+			  return res.json();
+			}
+			else {
+				throw res.statusText;
+			}
+		})
+		.then(function (data) {
+			console.log(data);
+		  	})
+		.catch(function (err) {
+			console.log(err);
+		})
+	}, [])
+	console.log(userEmail);
 
 	// Like and dislike
 	const [like, setLike] = useState(props.likes);
@@ -66,6 +78,8 @@ function Post(props) {
 		.then(function(res) {
 			if(res.ok) {
 				return res.json();
+			}else {
+				throw res.statusText;
 			}
 		})
 		.then(function(data) {
@@ -114,6 +128,8 @@ function Post(props) {
 			.then(function(res) {
 				if(res.ok) {
 					return res.json();
+				} else {
+					throw res.statusText;
 				}
 			})
 			.then(function(data) {
@@ -134,7 +150,7 @@ function Post(props) {
 			<div className="post-message shadow-gray">{props.message}</div>
 			<img className="post-image shadow-gray" src={props.imageUrl} width="300" aria-hidden alt={props.title}/>
 			<div className="flex-detail">	
-				<div className="post-author"> {props.userId}</div>
+				<div className="post-author">{userEmail}</div>
 				<div className='post-date' format="DD-MM-YY">{date.toLocaleString()}</div>
 			</div>
 			<div className="post-details shadow-gray">

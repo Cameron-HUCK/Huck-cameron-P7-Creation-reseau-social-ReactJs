@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Post from '../../components/Post/index';
 import styled, { keyframes } from 'styled-components';
+import { getUserToken } from "../../utils/lib";
 
 // CSS loader !
 const rotate = keyframes`
@@ -28,21 +29,7 @@ function Home() {
   const [posts, setPosts] = useState([]);
   const [isDataLoading, setDataLoading] = useState(true);
   // Recuperation localstorage du token, userId
-	function getUserToken() {
-		let dataToken = localStorage.getItem('dataUser');
-		if(dataToken == null) {
-				return {};
-			}
-			try {
-				let dataLocalStorage = JSON.parse(dataToken);
-				return dataLocalStorage;
-			}
-			catch(e) {
-				console.log(e);
-				return {};
-			}
-		};
-		let userToken = getUserToken('token');
+		let userToken = getUserToken();
 		console.log(userToken.token);
 
   useEffect(() => {
@@ -55,8 +42,12 @@ function Home() {
       }
     )
       .then(function (res) {
+      	console.log(res);
         if (res.ok) {
           return res.json();
+        }
+        else {
+        	throw res.statusText;
         }
       })
       .then(function (data) {
@@ -67,6 +58,7 @@ function Home() {
       })
     setDataLoading(false)
   }, [])
+  
   return (
     <section>
       <div className='title'>

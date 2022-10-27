@@ -5,6 +5,20 @@ const User = require('../models/user');
 const Moment = require('moment')
 const fs = require('fs');
 
+
+// get email to userId
+exports.getUserEmail = (req, res, next) => {
+  Post.findOne({ email: req.params.userId })
+  .then(async userId => {
+    if(!userId){
+      res.status(404).json({message: "The post does not exist"});
+    }else{
+      res.status(200).json(await email);
+    }
+  })
+  .catch(error => res.status(500).json({error : "Post not find" }));
+}
+
 // Allows you to create and add a post
 exports.createPost = async (req, res, next)  => {
 	try {

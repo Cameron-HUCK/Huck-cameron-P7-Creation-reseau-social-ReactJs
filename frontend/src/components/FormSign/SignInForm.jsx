@@ -43,7 +43,9 @@ const SignInForm = () => {
 		.then(function(res) {
 			if(res.ok) {
 				return res.json();
-			}
+			}else {
+        throw res.statusText;
+      }
 		})
 		.then(function(data) {
       localStorage.setItem('dataUser', JSON.stringify(data));
