@@ -22,7 +22,5 @@ router.get('/:id', auth, postCtrl.getOnePost);
 router.get('/', auth, postCtrl.getAllPosts);
 //Send likes and dislikes
 router.post('/:id/like', auth, postCtrl.likesAndDislikes);
-// get email to userId
-router.get('/email', postCtrl.getUserEmail);
 
 module.exports = router;

@@ -6,10 +6,10 @@ function Post(props) {
 	// Recuperation localstorage du token, userId
 	let userToken = getUserToken();
 	console.log(userToken.token);
-	
+
 	// Recuperation de l'email a partir de l'userId
 	let userEmail = useEffect(() => {
-		fetch(`http://localhost:4000/api/post/email`,
+		fetch(`http://localhost:4000/api/auth/email`,
 			{
 				headers: {
 				'Authorization': `Bearer ${userToken.token}`
