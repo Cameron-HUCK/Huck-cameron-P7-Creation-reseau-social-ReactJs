@@ -69,6 +69,7 @@ const UpdateForm = () => {
 			console.log(err);
 		});
 	}
+
 	return (
 		<li className='add-post-item'>
 			<div className="user-id-email">Id post = {postId} </div>
@@ -96,4 +97,5 @@ const UpdateForm = () => {
 		</li>
 	);
 }
+
 export default UpdateForm;

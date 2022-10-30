@@ -12,10 +12,12 @@ const SignUpForm = () => {
     // Récupérer les valeurs des 3 champs à envoyer au serveur : title, content, image
 		let userEmail = document.getElementById('email').value;
 		let userPassword = document.getElementById('password').value;
+    
     //controle input pas vide
     if (userEmail.trim().length === 0 || userPassword.trim().length === 0){
       return;
     }
+
     //controle validite email
     const regExEmail = (value) => {
       return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
@@ -25,6 +27,7 @@ const SignUpForm = () => {
 			errorMessage.textContent = "Il y a eu un problème";
       return;
     }
+
 		// Sending data
 		fetch(`http://localhost:4000/api/auth/signup`,
 			{

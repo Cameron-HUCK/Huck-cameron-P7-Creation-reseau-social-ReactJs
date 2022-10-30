@@ -3,23 +3,22 @@ import { useNavigate} from 'react-router-dom';
 import { getUserToken } from "../../utils/lib";
 
 const PostForm = () => {
+
+	// Navigate function
 	let navigate = useNavigate();
-	// recuperation localstorage du token, userId
-	  // Recuperation localstorage du token, userId
-	  let userToken = getUserToken();
-	  console.log(userToken.token);
-	
+
+	// Recuperation localstorage du token, userId
+	let userToken = getUserToken();
+	console.log(userToken.token);
+
+	// Send to Post
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		// Récupérer les valeurs des 3 champs à envoyer au serveur : title, content, image
+		// Récupérer les valeurs des champs à envoyer au serveur : title, content, image
 		let postTitle = document.getElementById('post-title').value;
 		let postContent = document.getElementById('post-content').value;
-		let postImage = document.getElementById('post-image').value;
 
-		console.log(postTitle);
-		console.log(postContent);
-		console.log(postImage);
 
 		let formData = new FormData();
 		formData.append('post', JSON.stringify({
@@ -54,7 +53,7 @@ const PostForm = () => {
 			errorMessage.textContent = "Il y a eu un problème la publication de votre post";
 		})
 	}
-	console.log(handleSubmit);
+
 	return (
 		<li className='add-post-item'>
 			<div className="user-id-email">{userToken.userId}</div>

@@ -25,12 +25,13 @@ export const Loader = styled.div`
 `
 
 function Home() {
+  
   // Affichage du post
   const [posts, setPosts] = useState([]);
   const [isDataLoading, setDataLoading] = useState(true);
+
   // Recuperation localstorage du token, userId
-		let userToken = getUserToken();
-		console.log(userToken.token);
+	let userToken = getUserToken();
 
   useEffect(() => {
     setDataLoading(true);

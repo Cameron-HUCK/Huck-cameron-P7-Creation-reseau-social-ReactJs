@@ -3,9 +3,11 @@ import { useNavigate } from 'react-router-dom';
 import {getUserToken} from '../../utils/lib'
 
 function Post(props) {
+
 	// Recuperation localstorage du token, userId
 	let userToken = getUserToken();
 	console.log(userToken.token);
+	
 	// Recuperation de l'email a partir de l'userId
 	let [emailUser, setemailUser] = useState([]);
 	useEffect(() => {
@@ -63,6 +65,7 @@ function Post(props) {
 			userId: userToken.userId,
 			like: value
 		};
+
 		// Sending data
 		fetch(`http://localhost:4000/api/post/${props.id}/like`,
 			{
@@ -109,6 +112,7 @@ function Post(props) {
 	const routeChange = (data)  => {
 		navigate(`/update/${props.id}`);
 	}
+
 	//Modification du format de la date
 	const date = new Date(props.createdAt);
 
@@ -141,7 +145,7 @@ function Post(props) {
 			});
 		}
 	}
-
+	
 	return (
 		<li id={'post-'+props.id} className="posts-item shadow-gray" data-id={props.id}>
 			<div className="flex-up">

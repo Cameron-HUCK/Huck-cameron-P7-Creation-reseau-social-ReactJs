@@ -17,6 +17,7 @@ const SignInForm = () => {
     if (userEmail.trim().length === 0 || userPassword.trim().length === 0){
       return;
     }
+
     //controle validite email
     const regExEmail = (value) => {
       return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);

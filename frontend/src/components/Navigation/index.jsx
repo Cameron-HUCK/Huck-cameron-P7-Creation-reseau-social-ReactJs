@@ -1,18 +1,18 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import Logout from '../../assets/logo-groupomania/logout.png';
 import { useNavigate } from 'react-router-dom';
 import { getUserToken } from "../../utils/lib";
 
-
 const Navigation = () => {
 
-  // Recuperation localstorage du token, userId
-  let userToken = getUserToken();
-  console.log(userToken.token);
+	// Recuperation localstorage du token, userId
+	let userToken = getUserToken();
+	console.log(userToken.token);
 
 	// Redirection vers la page du post
 	let navigate = useNavigate();
+
 	// Logout
 	function removeUserToken(){
 		if (window.confirm("Êtes-vous sur(e) de vouloir vous deconnecté ?")){
@@ -20,6 +20,7 @@ const Navigation = () => {
 			navigate('signin');
 		}
 	}
+
 	return (
 		<nav>
 			<ul>
@@ -52,4 +53,5 @@ const Navigation = () => {
 		</nav>
 	);
 }
+
 export default Navigation;
