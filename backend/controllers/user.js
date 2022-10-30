@@ -46,16 +46,8 @@ exports.login = (req, res, next) => {
 
 // get email to userId
 exports.getUserEmail = (req, res, next) => {
-  console.log(req.body.userId);
-  User.findOne({ user: req.params.userId })
-  .then(async user => {
-    if(!user){
-      res.status(404).json({message: "The post does not exist"});
-    }else{
-      res.status(200).json({
-        userId: req.body.email
-      });
-    }
-  })
-  .catch(error => res.status(500).json({error : "Post not find" }));
+  let userId = req.params.id;
+  User.findOne({ _id: userId})
+  .then((user) => res.status(200).json(user.email))
+  .catch((error) => res.status(400).json({error}));
 }

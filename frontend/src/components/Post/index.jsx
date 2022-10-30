@@ -6,10 +6,10 @@ function Post(props) {
 	// Recuperation localstorage du token, userId
 	let userToken = getUserToken();
 	console.log(userToken.token);
-
 	// Recuperation de l'email a partir de l'userId
-	let userEmail = useEffect(() => {
-		fetch(`http://localhost:4000/api/auth/email`,
+	let [emailUser, setemailUser] = useState([]);
+	useEffect(() => {
+		fetch(`http://localhost:4000/api/auth/${props.userId}`,
 			{
 				headers: {
 				'Authorization': `Bearer ${userToken.token}`
@@ -25,13 +25,12 @@ function Post(props) {
 			}
 		})
 		.then(function (data) {
-			console.log(data);
+			setemailUser(data);
 		  	})
 		.catch(function (err) {
 			console.log(err);
 		})
 	}, [])
-	console.log(userEmail);
 
 	// Like and dislike
 	const [like, setLike] = useState(props.likes);
@@ -103,6 +102,7 @@ function Post(props) {
 			console.log(err);
 		});
 	}
+	
 	// Redirection vers la page du post
 	let navigate = useNavigate();
 	
@@ -150,7 +150,7 @@ function Post(props) {
 			<div className="post-message shadow-gray">{props.message}</div>
 			<img className="post-image shadow-gray" src={props.imageUrl} width="300" aria-hidden alt={props.title}/>
 			<div className="flex-detail">	
-				<div className="post-author">{userEmail}</div>
+				<div className="post-author">{emailUser}</div>
 				<div className='post-date' format="DD-MM-YY">{date.toLocaleString()}</div>
 			</div>
 			<div className="post-details shadow-gray">

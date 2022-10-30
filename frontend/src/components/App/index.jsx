@@ -23,8 +23,8 @@ function App() {
 		})
 	}
 		fetchToken();
-	}, [uid]);
-	
+	}, [uid]); 
+
 	return (
 		<UidContext.Provider value={uid}>
 			<div className="App">

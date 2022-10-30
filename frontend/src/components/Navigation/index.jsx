@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import Logout from '../../assets/logo-groupomania/logout.png';
 import { useNavigate } from 'react-router-dom';
 import { getUserToken } from "../../utils/lib";
 
+
 const Navigation = () => {
+
   // Recuperation localstorage du token, userId
   let userToken = getUserToken();
   console.log(userToken.token);
