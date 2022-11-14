@@ -37,7 +37,8 @@ const SignInForm = () => {
 				},
 				body: JSON.stringify({
 					email: userEmail,
-					password: userPassword
+					password: userPassword,
+          isAdmin : true
 				})
 			}
 		)
@@ -59,7 +60,6 @@ const SignInForm = () => {
 			errorMessage.textContent = "Il y a eu un problème";
 		});
 	}
-  
   return (
       <form action="" onSubmit={handleLogin} id="sign-up-form">
         <label htmlFor="email" className='flex-mail'>Email :</label>

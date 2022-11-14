@@ -6,10 +6,9 @@ function Post(props) {
 
 	// Recuperation localstorage du token, userId
 	let userToken = getUserToken();
-	console.log(userToken.token);
 	
 	// Recuperation de l'email a partir de l'userId
-	let [emailUser, setemailUser] = useState([]);
+	let [emailUser, setEmailUser] = useState('');
 	useEffect(() => {
 		fetch(`http://localhost:4000/api/auth/${props.userId}`,
 			{
@@ -27,8 +26,8 @@ function Post(props) {
 			}
 		})
 		.then(function (data) {
-			setemailUser(data);
-		  	})
+			setEmailUser(data);
+  	})
 		.catch(function (err) {
 			console.log(err);
 		})

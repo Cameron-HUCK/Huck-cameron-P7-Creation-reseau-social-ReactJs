@@ -1,7 +1,21 @@
 import React  from "react";
 import UpdateForm from '../../components/PostForm/UpdateForm'
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { getUserToken } from "../../utils/lib";
 
 function UpdatePost () {
+
+		let navigate = useNavigate();
+	  // Recuperation localstorage du token, userId
+		let userToken = getUserToken();
+
+	  useEffect(() => {
+	  	if(userToken === false) {
+				navigate(`/signin`);
+	  	}
+	  });
+
     return (
         <section>
             <div className='title'>

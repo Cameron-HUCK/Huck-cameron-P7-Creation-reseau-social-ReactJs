@@ -26,29 +26,39 @@ const Navigation = () => {
 			<ul>
 				<div className="flex-link">
 					<div className='nav-container'>
-						<li>
-							<Link to="/">Home</Link>
-						</li>
-					</div>	
-					<div className='nav-container'>
-						<li>
-							<Link to="/create">Create</Link>
-						</li>
-					</div>	
-					<div className='nav-container'>
-						<li>
-							<Link to="/signup">Signup</Link>
-						</li>
+						{(userToken !== false) && (
+							<li>
+								<Link to="/">Home</Link>
+							</li>
+						)}
 					</div>
 					<div className='nav-container'>
-						<li>
-							<Link to="/signin">Signin</Link>
-						</li>
+						{(userToken !== false) && (
+							<li>
+								<Link to="/create">Create</Link>
+							</li>
+						)}
+					</div>	
+					<div className='nav-container'>
+						{(userToken === false) && (
+							<li>
+								<Link to="/signup">Signup</Link>
+							</li>
+						)}
 					</div>
-					<li onClick={removeUserToken}>
-						<img  src={Logout} className='logo-logout' aria-hidden alt="logout"></img>
-					</li>	
-				</div>			
+					<div className='nav-container'>
+						{(userToken === false) && (
+							<li>
+								<Link to="/signin">Signin</Link>
+							</li>
+						)}
+					</div>
+					{(userToken !== false) && (
+						<li onClick={removeUserToken}>
+							<img src={Logout} className='logo-logout' aria-hidden alt="logout"></img>
+						</li>
+					)}
+				</div>
 			</ul>	
 		</nav>
 	);

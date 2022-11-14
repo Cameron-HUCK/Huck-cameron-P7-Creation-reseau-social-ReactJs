@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import Post from '../../components/Post/index';
 import styled, { keyframes } from 'styled-components';
 import { getUserToken } from "../../utils/lib";
+import { useNavigate } from 'react-router-dom';
 
 // CSS loader !
 const rotate = keyframes`
@@ -26,38 +27,45 @@ export const Loader = styled.div`
 
 function Home() {
   
+  let navigate = useNavigate();
   // Affichage du post
   const [posts, setPosts] = useState([]);
   const [isDataLoading, setDataLoading] = useState(true);
 
   // Recuperation localstorage du token, userId
 	let userToken = getUserToken();
-
+  
+  // Rendu conditionnelle !
   useEffect(() => {
-    setDataLoading(true);
-    fetch(`http://localhost:4000/api/post`,
-      {
-        headers: {
-          'Authorization': `Bearer ${userToken.token}`
-          },
-      }
-    )
-      .then(function (res) {
-      	console.log(res);
-        if (res.ok) {
-          return res.json();
-        }
-        else {
-        	throw res.statusText;
-        }
-      })
-      .then(function (data) {
-        setPosts(data);
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
-    setDataLoading(false)
+  	if(userToken === false) {
+			navigate(`/signin`);
+  	}
+  	else {
+	    setDataLoading(true);
+	    fetch(`http://localhost:4000/api/post`,
+	      {
+	        headers: {
+	          'Authorization': `Bearer ${userToken.token}`
+	          },
+	      }
+	    )
+	      .then(function (res) {
+	      	console.log(res);
+	        if (res.ok) {
+	          return res.json();
+	        }
+	        else {
+	        	throw res.statusText;
+	        }
+	      })
+	      .then(function (data) {
+	        setPosts(data);
+	      })
+	      .catch(function (err) {
+	        console.log(err);
+	      })
+	    setDataLoading(false)
+  	}
   }, [])
   
   return (

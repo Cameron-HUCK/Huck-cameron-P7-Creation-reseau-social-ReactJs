@@ -9,7 +9,7 @@ const PostForm = () => {
 
 	// Recuperation localstorage du token, userId
 	let userToken = getUserToken();
-	console.log(userToken.token);
+	console.log(userToken);
 
 	// Send to Post
 	function handleSubmit(e) {
