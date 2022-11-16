@@ -55,17 +55,20 @@ exports.modifyPost = (req, res, next) => {
 
 // Remove the selected post
 exports.deletePost = (req, res, next) => {
-  Post.findOne({ _id: req.params.id })
-  .then(post => {
-    const filename = post.imageUrl.split('/images/')[1];
-    fs.unlink(`images/${filename}`, () => {
-      Post.deleteOne({ _id: req.params.id })
-      .then(() => res.status(200).json({ message: 'Post removed!'}))
-      .catch(error => res.status(400).json({error : "Post not find"}));
-    });
-  })
-  .catch(error => res.status(500).json({ error }));
-};
+  let currentUser = findOne({_id: req.auth.userId})
+  if(req.auth.userId === post.userId || currentUser.isAdmin === true){
+    Post.findOne({ _id: req.params.id })
+    .then(post => {
+      const filename = post.imageUrl.split('/images/')[1];
+      fs.unlink(`images/${filename}`, () => {
+        Post.deleteOne({ _id: req.params.id })
+        .then(() => res.status(200).json({ message: 'Post removed!'}))
+        .catch(error => res.status(400).json({error : "Post not find"}));
+      });
+    })
+    .catch(error => res.status(500).json({ error }));
+  };
+}
 
 // Select a single post
 exports.getOnePost = (req, res, next) => {
