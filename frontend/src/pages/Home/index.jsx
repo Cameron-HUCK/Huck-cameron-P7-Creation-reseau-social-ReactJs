@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Post from '../../components/Post/index';
 import styled, { keyframes } from 'styled-components';
-import { getUserToken } from "../../utils/lib";
+import { getUserData } from "../../utils/lib";
 import { useNavigate } from 'react-router-dom';
 
 // CSS loader !
@@ -33,11 +33,11 @@ function Home() {
   const [isDataLoading, setDataLoading] = useState(true);
 
   // Recuperation localstorage du token, userId
-	let userToken = getUserToken();
+	let userData = getUserData();
   
   // Rendu conditionnelle !
   useEffect(() => {
-  	if(userToken === false) {
+  	if(userData === false) {
 			navigate(`/signin`);
   	}
   	else {
@@ -45,7 +45,7 @@ function Home() {
 	    fetch(`http://localhost:4000/api/post`,
 	      {
 	        headers: {
-	          'Authorization': `Bearer ${userToken.token}`
+	          'Authorization': `Bearer ${userData.token}`
 	          },
 	      }
 	    )

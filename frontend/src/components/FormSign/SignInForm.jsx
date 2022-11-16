@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+import { setUserData } from "../../utils/lib";
 
 const SignInForm = () => {
   const [email, setEmail] = useState('');
@@ -50,7 +51,7 @@ const SignInForm = () => {
       }
 		})
 		.then(function(data) {
-      localStorage.setItem('dataUser', JSON.stringify(data));
+			setUserData(data);
 			console.log('data', data);
 			navigate(`/`);
 		})

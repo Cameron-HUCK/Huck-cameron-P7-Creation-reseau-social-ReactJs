@@ -2,21 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logout from '../../assets/logo-groupomania/logout.png';
 import { useNavigate } from 'react-router-dom';
-import { getUserToken } from "../../utils/lib";
+import { getUserData } from "../../utils/lib";
 
 const Navigation = () => {
 
 	// Recuperation localstorage du token, userId
-	let userToken = getUserToken();
-	console.log(userToken.token);
+	let userData = getUserData();
+	console.log(userData.token);
 
 	// Redirection vers la page du post
 	let navigate = useNavigate();
 
 	// Logout
-	function removeUserToken(){
-		if (window.confirm("Êtes-vous sur(e) de vouloir vous deconnecté ?")){
-			localStorage.removeItem('dataUser');
+	function removeUserData(){
+		if (window.confirm("Êtes-vous certain(e) de vouloir vous deconnecter ?")){
+			localStorage.removeItem('userData');
 			navigate('signin');
 		}
 	}
@@ -26,35 +26,35 @@ const Navigation = () => {
 			<ul>
 				<div className="flex-link">
 					<div className='nav-container'>
-						{(userToken !== false) && (
+						{(userData !== false) && (
 							<li>
 								<Link to="/">Home</Link>
 							</li>
 						)}
 					</div>
 					<div className='nav-container'>
-						{(userToken !== false) && (
+						{(userData !== false) && (
 							<li>
 								<Link to="/create">Create</Link>
 							</li>
 						)}
 					</div>	
 					<div className='nav-container'>
-						{(userToken === false) && (
+						{(userData === false) && (
 							<li>
 								<Link to="/signup">Signup</Link>
 							</li>
 						)}
 					</div>
 					<div className='nav-container'>
-						{(userToken === false) && (
+						{(userData === false) && (
 							<li>
 								<Link to="/signin">Signin</Link>
 							</li>
 						)}
 					</div>
-					{(userToken !== false) && (
-						<li onClick={removeUserToken}>
+					{(userData !== false) && (
+						<li onClick={removeUserData}>
 							<img src={Logout} className='logo-logout' aria-hidden alt="logout"></img>
 						</li>
 					)}

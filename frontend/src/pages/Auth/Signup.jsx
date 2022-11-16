@@ -2,16 +2,16 @@ import React from 'react';
 import SignUpForm from '../../components/FormSign/SignUpForm'
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
-import { getUserToken } from "../../utils/lib";
+import { getUserData } from "../../utils/lib";
 
 const Signup = () => {
 
 	let navigate = useNavigate();
   // Recuperation localstorage du token, userId
-	let userToken = getUserToken();
+	let userData = getUserData();
 
   useEffect(() => {
-  	if(userToken !== false) {
+  	if(userData !== false) {
 			navigate(`/`);
   	}
   });

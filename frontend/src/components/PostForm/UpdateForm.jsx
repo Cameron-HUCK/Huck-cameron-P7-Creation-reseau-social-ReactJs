@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from 'react-router-dom';
 import { useNavigate} from 'react-router-dom';
-import { getUserToken } from "../../utils/lib";
+import { getUserData } from "../../utils/lib";
 
 const UpdateForm = () => {
 
 	let navigate = useNavigate();
 	const [postsUpdate, setpostsUpdate] = useState([]);
 
-  	// Recuperation localstorage du token, userId
-  	let userToken = getUserToken();
-  	console.log(userToken.token);
+	// Recuperation localstorage du token, userId
+	let userData = getUserData();
+	console.log(userData.token);
 
 	//Recuperation de l'id
 	const urlParams = useParams();
@@ -19,7 +19,11 @@ const UpdateForm = () => {
 
 	//Recuperation de l'id
 	useEffect(() => {
-		fetch(`http://localhost:4000/api/post/${postId}`)
+		fetch(`http://localhost:4000/api/post/${postId}`, {
+			headers: {
+				'Authorization': `Bearer ${userData.token}`
+			},
+		})
 		.then(function (res) {
 		 if (res.ok) {
 		   return res.json();
@@ -29,6 +33,26 @@ const UpdateForm = () => {
 		})
 		.then(function (data) {
 			setpostsUpdate(data);
+			// Checking property of the post
+			if(data.userId !== userData.userId) {
+				// Checking if current user is really an admin
+				fetch(`http://localhost:4000/api/auth/${userData.userId}`)
+				.then(function (res1) {
+				 if (res1.ok) {
+				   return res1.json();
+				 }else {
+					throw res1.statusText;
+				}
+				})
+				.then(function (res1) {
+					if(res1.isAdmin === false) {
+						navigate(`/`);
+					}
+				})
+				.catch(function (err1) {
+					console.log(err1);
+				})
+			}
 		})
 		.catch(function (err) {
 			console.log(err);
@@ -41,7 +65,7 @@ const UpdateForm = () => {
 		let formData = new FormData();
 		formData.append('post', JSON.stringify({
 			title: document.getElementById('post-title').value,
-			message: document.getElementById('post-content').value												
+			message: document.getElementById('post-content').value
 		}));
 		formData.append('image', document.getElementById('post-image').files[0]);
 		fetch(
@@ -50,7 +74,7 @@ const UpdateForm = () => {
 				method: 'PUT',
 				body: formData,
 				headers: {
-					'Authorization': `Bearer ${userToken.token}`
+					'Authorization': `Bearer ${userData.token}`
 				  },
 			}
 		)

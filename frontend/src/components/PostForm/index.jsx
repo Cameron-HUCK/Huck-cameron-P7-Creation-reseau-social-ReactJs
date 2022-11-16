@@ -1,6 +1,6 @@
 import React  from "react";
 import { useNavigate} from 'react-router-dom';
-import { getUserToken } from "../../utils/lib";
+import { getUserData } from "../../utils/lib";
 
 const PostForm = () => {
 
@@ -8,8 +8,8 @@ const PostForm = () => {
 	let navigate = useNavigate();
 
 	// Recuperation localstorage du token, userId
-	let userToken = getUserToken();
-	console.log(userToken);
+	let userData = getUserData();
+	console.log(userData);
 
 	// Send to Post
 	function handleSubmit(e) {
@@ -22,7 +22,7 @@ const PostForm = () => {
 
 		let formData = new FormData();
 		formData.append('post', JSON.stringify({
-			userId: userToken.userId,
+			userId: userData.userId,
 			title: postTitle,
 			message: postContent
 		}));
@@ -33,7 +33,7 @@ const PostForm = () => {
 				method: 'post',
 				body: formData,
 				headers: {
-          		'Authorization': `Bearer ${userToken.token}`
+          		'Authorization': `Bearer ${userData.token}`
 				},
 			}
 		)
@@ -56,7 +56,7 @@ const PostForm = () => {
 
 	return (
 		<li className='add-post-item'>
-			<div className="user-id-email">{userToken.userId}</div>
+			<div className="user-id-email">{userData.userId}</div>
 			<div className="form-post">
 				<form onSubmit={handleSubmit} method="post" action="" className='form-background'>
 					<label htmlFor="title" className='color-black' >Post title :</label>

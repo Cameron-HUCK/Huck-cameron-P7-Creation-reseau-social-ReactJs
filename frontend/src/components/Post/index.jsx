@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import {getUserToken} from '../../utils/lib'
+import {getUserData} from '../../utils/lib'
 
 function Post(props) {
 
 	// Recuperation localstorage du token, userId
-	let userToken = getUserToken();
+	let userData = getUserData();
 	
 	// Recuperation de l'email a partir de l'userId
 	let [emailUser, setEmailUser] = useState('');
@@ -13,7 +13,7 @@ function Post(props) {
 		fetch(`http://localhost:4000/api/auth/${props.userId}`,
 			{
 				headers: {
-				'Authorization': `Bearer ${userToken.token}`
+				'Authorization': `Bearer ${userData.token}`
 				},
 			}
 		)
@@ -26,7 +26,7 @@ function Post(props) {
 			}
 		})
 		.then(function (data) {
-			setEmailUser(data);
+			setEmailUser(data.email);
   	})
 		.catch(function (err) {
 			console.log(err);
@@ -61,7 +61,7 @@ function Post(props) {
 	function updateLikes(value) {
 		// Preparing data
 		let data = {
-			userId: userToken.userId,
+			userId: userData.userId,
 			like: value
 		};
 
@@ -71,7 +71,7 @@ function Post(props) {
 				method: 'post',
 				headers: {
 					'Content-Type': 'application/json',
-					'Authorization': `Bearer ${userToken.token}`
+					'Authorization': `Bearer ${userData.token}`
 				},
 				body: JSON.stringify(data)
 			}
@@ -124,7 +124,7 @@ function Post(props) {
 				{
 					method: 'DELETE',
 					headers: {
-						'Authorization': `Bearer ${userToken.token}`
+						'Authorization': `Bearer ${userData.token}`
 					  },
 				}
 			)
@@ -133,6 +133,28 @@ function Post(props) {
 					return res.json();
 				} else {
 					throw res.statusText;
+				}
+			})
+			.then(function (data) {
+				// Checking property of the post
+				if(data.userId !== userData.userId) {
+					// Checking if current user is really an admin
+					fetch(`http://localhost:4000/api/auth/${userData.userId}`)
+					.then(function (res1) {
+					 if (res1.ok) {
+					   return res1.json();
+					 }else {
+						throw res1.statusText;
+					}
+					})
+					.then(function (res1) {
+						if(res1.isAdmin === false) {
+							navigate(`/`);
+						}
+					})
+					.catch(function (err1) {
+						console.log(err1);
+					})
 				}
 			})
 			.then(function(data) {
@@ -159,11 +181,18 @@ function Post(props) {
 			<div className="post-details shadow-gray">
 				<button onClick={doLike} className={[likeActive ? "post-likes":null, 'button'].join(' ')}>♥ Like ({like})</button>
 				<button onClick={doDislike} className={[dislikeActive ? "post-dislikes":null, 'button'].join(' ')}>♥ Dislike ({dislike})</button>
-				<button onClick={routeChange} className="post-update">Update</button>
-				<button onClick={deletePost} className="post-delete">Delete</button>
+				{(userData.isAdmin === true || userData.userId === props.userId) && (
+					<button onClick={routeChange} className="post-update">Update</button>
+				)}
+				{(userData.isAdmin === true || userData.userId === props.userId) && (
+					<button onClick={deletePost} className="post-delete">Delete</button>
+				)}
 			</div>
 		</li>
 	)
 }
 
 export default Post;
+
+
+

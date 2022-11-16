@@ -6,8 +6,6 @@ const userCtrl = require('../controllers/user');
 
 router.post('/signup', userCtrl.signup);
 router.post('/login', userCtrl.login);
-
-// get email to userId
-router.get('/:id', userCtrl.getUserEmail);
+router.get('/:id', userCtrl.getUser); // get user from userId
 
 module.exports = router;
