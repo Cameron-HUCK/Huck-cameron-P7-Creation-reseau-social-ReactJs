@@ -5,16 +5,18 @@ import { useEffect } from 'react';
 import { getUserData } from "../../utils/lib";
 
 function UpdatePost () {
+    
+    // Redirect function
+	let navigate = useNavigate();
 
-		let navigate = useNavigate();
-	  // Recuperation localstorage du token, userId
-		let userData = getUserData();
+    // Recuperation localstorage du token, userId
+	let userData = getUserData();
 
-	  useEffect(() => {
+	useEffect(() => {
 	  	if(userData === false) {
-				navigate(`/signin`);
+			navigate(`/signin`);
 	  	}
-	  });
+	});
 
     return (
         <section>

@@ -28,14 +28,14 @@ export const Loader = styled.div`
 function Home() {
   
   let navigate = useNavigate();
-  // Affichage du post
+  // Display the post
   const [posts, setPosts] = useState([]);
   const [isDataLoading, setDataLoading] = useState(true);
 
-  // Recuperation localstorage du token, userId
+  // Localstorage recovery of the token, userId
 	let userData = getUserData();
   
-  // Rendu conditionnelle !
+  // Render conditional!
   useEffect(() => {
   	if(userData === false) {
 			navigate(`/signin`);

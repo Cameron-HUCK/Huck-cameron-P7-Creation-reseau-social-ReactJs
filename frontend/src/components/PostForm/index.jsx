@@ -7,7 +7,7 @@ const PostForm = () => {
 	// Navigate function
 	let navigate = useNavigate();
 
-	// Recuperation localstorage du token, userId
+	// Localstorage recovery of the token, userId
 	let userData = getUserData();
 	console.log(userData);
 
@@ -15,7 +15,7 @@ const PostForm = () => {
 	function handleSubmit(e) {
 		e.preventDefault();
 
-		// Récupérer les valeurs des champs à envoyer au serveur : title, content, image
+		// Retrieve the values ​​of the fields to send to the server: title, content, image
 		let postTitle = document.getElementById('post-title').value;
 		let postContent = document.getElementById('post-content').value;
 

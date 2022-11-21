@@ -4,10 +4,10 @@ import {getUserData} from '../../utils/lib'
 
 function Post(props) {
 
-	// Recuperation localstorage du token, userId
+	// Localstorage recovery of the token, userId
 	let userData = getUserData();
 	
-	// Recuperation de l'email a partir de l'userId
+	// Retrieve the email of the user Id
 	let [emailUser, setEmailUser] = useState('');
 	useEffect(() => {
 		fetch(`http://localhost:4000/api/auth/${props.userId}`,
@@ -105,17 +105,17 @@ function Post(props) {
 		});
 	}
 	
-	// Redirection vers la page du post
+	// Redirect to the post page
 	let navigate = useNavigate();
 	
 	const routeChange = (data)  => {
 		navigate(`/update/${props.id}`);
 	}
 
-	//Modification du format de la date
+	// Modification of the date format
 	const date = new Date(props.createdAt);
 
-	// Suppression DELETE
+	// Deletion DELETE
 	const deletePost = (data) => {
 		if(window.confirm("Êtes-vous sur(e) de vouloir supprimer le post ?")) {
 			// DELETE request using fetch inside useEffect React hook
@@ -133,28 +133,6 @@ function Post(props) {
 					return res.json();
 				} else {
 					throw res.statusText;
-				}
-			})
-			.then(function (data) {
-				// Checking property of the post
-				if(data.userId !== userData.userId) {
-					// Checking if current user is really an admin
-					fetch(`http://localhost:4000/api/auth/${userData.userId}`)
-					.then(function (res1) {
-					 if (res1.ok) {
-					   return res1.json();
-					 }else {
-						throw res1.statusText;
-					}
-					})
-					.then(function (res1) {
-						if(res1.isAdmin === false) {
-							navigate(`/`);
-						}
-					})
-					.catch(function (err1) {
-						console.log(err1);
-					})
 				}
 			})
 			.then(function(data) {

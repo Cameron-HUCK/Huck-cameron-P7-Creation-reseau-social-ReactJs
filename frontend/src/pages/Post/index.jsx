@@ -6,15 +6,17 @@ import { getUserData } from "../../utils/lib";
 
 function AddPost () {
 
-		let navigate = useNavigate();
-	  // Recuperation localstorage du token, userId
-		let userData = getUserData();
+    // Redirect function
+	let navigate = useNavigate();
 
-	  useEffect(() => {
+	// Localstorage recovery of the token, userId
+	let userData = getUserData();
+
+	useEffect(() => {
 	  	if(userData === false) {
 				navigate(`/signin`);
 	  	}
-	  });
+	});
 
     return (
         <section>

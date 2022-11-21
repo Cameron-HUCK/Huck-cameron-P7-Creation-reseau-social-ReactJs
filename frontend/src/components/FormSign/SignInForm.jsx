@@ -10,16 +10,16 @@ const SignInForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Récupérer les valeurs des 3 champs à envoyer au serveur : title, content, image
+    // Retrieve the values ​​of the 3 fields to send to the server: title, content, image
 		let userEmail = document.getElementById('email').value;
 		let userPassword = document.getElementById('password').value;
 
-    //controle input pas vide
+    // Input control not empty
     if (userEmail.trim().length === 0 || userPassword.trim().length === 0){
       return;
     }
 
-    //controle validite email
+    // Email validity check
     const regExEmail = (value) => {
       return /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/.test(value);
     }
@@ -61,6 +61,7 @@ const SignInForm = () => {
 			errorMessage.textContent = "Il y a eu un problème";
 		});
 	}
+  
   return (
       <form action="" onSubmit={handleLogin} id="sign-up-form">
         <label htmlFor="email" className='flex-mail'>Email :</label>

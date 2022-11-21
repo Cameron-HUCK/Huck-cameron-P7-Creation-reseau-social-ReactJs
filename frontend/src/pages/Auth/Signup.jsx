@@ -5,9 +5,10 @@ import { useEffect } from 'react';
 import { getUserData } from "../../utils/lib";
 
 const Signup = () => {
-
+  // Redirect function
 	let navigate = useNavigate();
-  // Recuperation localstorage du token, userId
+
+  // Localstorage recovery of the token, userId
 	let userData = getUserData();
 
   useEffect(() => {

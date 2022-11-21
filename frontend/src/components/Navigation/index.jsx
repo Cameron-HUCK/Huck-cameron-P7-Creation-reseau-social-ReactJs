@@ -6,11 +6,11 @@ import { getUserData } from "../../utils/lib";
 
 const Navigation = () => {
 
-	// Recuperation localstorage du token, userId
+	// Localstorage recovery of the token, userId
 	let userData = getUserData();
 	console.log(userData.token);
 
-	// Redirection vers la page du post
+	// Redirect to the post page
 	let navigate = useNavigate();
 
 	// Logout

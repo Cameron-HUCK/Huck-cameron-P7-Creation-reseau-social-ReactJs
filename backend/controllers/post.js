@@ -38,36 +38,39 @@ exports.modifyPost = (req, res, next) => {
   };
   Post.findOne({ _id: req.params.id })
   .then(async post => {
-    if(req.file) {
-      const filename = post.imageUrl.split('/images/')[1];
-      fs.unlink(`images/${filename}`, () => {
+    let currentUser = Post.findOne({_id: req.auth.userId})
+    if(req.auth.userId === post.userId || currentUser.isAdmin === true){
+      if(req.file) {
+        const filename = post.imageUrl.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
+          Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
+          .then(() => res.status(200).json({ message: 'Post changed!'}))
+          .catch(error => res.status(400).json({error : "Post not find" }));
+        })
+      }else {
         Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Post changed!'}))
-        .catch(error => res.status(400).json({error : "Post not find" }));
-      })
-    }else {
-      Post.updateOne({ _id: req.params.id }, { ...postObject, _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Post changed!'}))
-        .catch(error => res.status(400).json({error : "Post not find" }));
+          .then(() => res.status(200).json({ message: 'Post changed!'}))
+          .catch(error => res.status(400).json({error : "Post not find" }));
+      }
     }
   }
 )}
 
 // Remove the selected post
 exports.deletePost = (req, res, next) => {
-  let currentUser = findOne({_id: req.auth.userId})
-  if(req.auth.userId === post.userId || currentUser.isAdmin === true){
+  let currentUser = Post.findOne({_id: req.auth.userId})
     Post.findOne({ _id: req.params.id })
     .then(post => {
-      const filename = post.imageUrl.split('/images/')[1];
-      fs.unlink(`images/${filename}`, () => {
-        Post.deleteOne({ _id: req.params.id })
-        .then(() => res.status(200).json({ message: 'Post removed!'}))
-        .catch(error => res.status(400).json({error : "Post not find"}));
-      });
+      if(req.auth.userId === post.userId || currentUser.isAdmin === true){
+        const filename = post.imageUrl.split('/images/')[1];
+        fs.unlink(`images/${filename}`, () => {
+          Post.deleteOne({ _id: req.params.id })
+          .then(() => res.status(200).json({ message: 'Post removed!'}))
+          .catch(error => res.status(400).json({error : "Post not find"}));
+        });
+      }
     })
     .catch(error => res.status(500).json({ error }));
-  };
 }
 
 // Select a single post

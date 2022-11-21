@@ -8,16 +8,16 @@ const UpdateForm = () => {
 	let navigate = useNavigate();
 	const [postsUpdate, setpostsUpdate] = useState([]);
 
-	// Recuperation localstorage du token, userId
+	// Localstorage recovery of the token, userId
 	let userData = getUserData();
 	console.log(userData.token);
 
-	//Recuperation de l'id
+	// Retrieve the id from the URL
 	const urlParams = useParams();
 	const postId = urlParams.id;
 	console.log(postId);
 
-	//Recuperation de l'id
+	//Retrieve the id of the post
 	useEffect(() => {
 		fetch(`http://localhost:4000/api/post/${postId}`, {
 			headers: {

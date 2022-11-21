@@ -6,6 +6,7 @@ import Signup from '../../pages/Auth/Signup';
 import Create from '../../pages/Post';
 import UpdatePost from "../../pages/Update-post/index.jsx";
 
+// Creation of navigation routes
 const Content = () => {
 	return (
 		<div className="content">
