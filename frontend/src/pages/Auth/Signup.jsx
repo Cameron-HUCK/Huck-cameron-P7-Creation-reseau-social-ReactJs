@@ -22,10 +22,10 @@ const Signup = () => {
       <h1>Signup :</h1>
       <div className='log-container'>
         <div className="form-container">
-                <div className="sign-container">
-                  <SignUpForm />
-                </div>    
-            </div>
+          <div className="sign-container">
+            <SignUpForm />
+          </div>    
+        </div>
       </div>
     </div> 
   );

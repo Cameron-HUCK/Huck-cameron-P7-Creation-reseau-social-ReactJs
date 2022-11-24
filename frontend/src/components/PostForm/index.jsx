@@ -9,8 +9,7 @@ const PostForm = () => {
 
 	// Localstorage recovery of the token, userId
 	let userData = getUserData();
-	console.log(userData);
-
+	
 	// Send to Post
 	function handleSubmit(e) {
 		e.preventDefault();

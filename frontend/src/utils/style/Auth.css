@@ -1,0 +1,53 @@
+/* Auth Page CSS*/
+label{
+    font-style: italic;
+    font-size: 20px;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  #email{
+    border-radius: 5px;
+    margin-bottom: 20px;
+    width: 400px;
+    padding: 5px;
+  }
+  
+  #password{
+    border-radius: 5px;
+    margin-bottom: 10px;
+    width: 400px;
+    padding: 5px;
+  }
+  
+  #sign-up-form{
+    padding: 10px 15px 10px 15px;
+    border-radius: 15px;
+    background: #FFD7D7;
+    margin: 20px;
+  }
+  
+  .validate-button{
+    font-style: italic;
+    border-radius: 15px;
+    padding: 15px;
+    cursor: pointer;
+    font-size: 15px;
+    background: #FD2D01;
+    color: white;
+    font-family: 'Shrikhand', cursive;
+    font-size: 14px;
+  }
+  
+  .validate-button:active{
+    transform: scale(1.03);
+    opacity: 0.8;
+  }
+  
+  .flex-button-end{
+    text-align: end;
+  }
+  
+  .error-password{
+    color: #FD2D01;
+  }

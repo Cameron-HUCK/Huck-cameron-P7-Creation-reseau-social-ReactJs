@@ -1,0 +1,22 @@
+/* FOOTER CSS */
+.footer-barre {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #FFD7D7;
+  height: 200px;
+}
+
+.footer-container{
+  font-size: 20px;
+}
+
+.logo-size{
+  height: 200px;
+  width: 100%;
+}
+
+.back-color-footer{
+  background-color: #4E5166;
+}
+  

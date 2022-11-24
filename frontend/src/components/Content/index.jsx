@@ -4,6 +4,7 @@ import Home from '../../pages/Home';
 import Signin from '../../pages/Auth/Signin';
 import Signup from '../../pages/Auth/Signup';
 import Create from '../../pages/Post';
+import NotFound from '../../pages/NotFound';
 import UpdatePost from "../../pages/Update-post/index.jsx";
 
 // Creation of navigation routes
@@ -16,6 +17,7 @@ const Content = () => {
 				<Route path="/signup" element={<Signup/>} />
 				<Route path="/signin" element={<Signin/>} />
 				<Route path="/update/:id" element={<UpdatePost/>} />
+				<Route path="*" element={<NotFound />} />
 			</Routes>
 		</div>
 	);

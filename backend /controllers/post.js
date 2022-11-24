@@ -5,6 +5,17 @@ const User = require('../models/user');
 const Moment = require('moment')
 const fs = require('fs');
 
+// Allows to check if a userId is admin
+async function isUserAdmin(userId) {
+	try {
+		currentUser = await User.findOne({ _id: userId });
+		return currentUser.isAdmin;
+	}
+	catch(err) {
+		return false;
+	}
+}
+
 // Allows you to create and add a post
 exports.createPost = async (req, res, next)  => {
 	try {
@@ -26,7 +37,8 @@ exports.createPost = async (req, res, next)  => {
 };
 
 // Allows you to modify the post information
-exports.modifyPost = (req, res, next) => {
+exports.modifyPost = async (req, res, next) => {
+	// Getting date in postObject
   const postObject = req.file ?
   {
     ...JSON.parse(req.body.post),
@@ -36,10 +48,12 @@ exports.modifyPost = (req, res, next) => {
   {
     ...JSON.parse(req.body.post)
   };
+  // Checking if current user is admin from DB
+  let isCurrentUserAdmin = await isUserAdmin(req.auth.userId);
+  // Loading Post from DB
   Post.findOne({ _id: req.params.id })
   .then(async post => {
-    let currentUser = Post.findOne({_id: req.auth.userId})
-    if(req.auth.userId === post.userId || currentUser.isAdmin === true){
+    if(req.auth.userId === post.userId || isCurrentUserAdmin === true){
       if(req.file) {
         const filename = post.imageUrl.split('/images/')[1];
         fs.unlink(`images/${filename}`, () => {
@@ -53,25 +67,35 @@ exports.modifyPost = (req, res, next) => {
           .catch(error => res.status(400).json({error : "Post not find" }));
       }
     }
+    else {
+			res.status(400).json({error : "This post does not belong to you" })
+    }
   }
 )}
 
 // Remove the selected post
-exports.deletePost = (req, res, next) => {
-  let currentUser = Post.findOne({_id: req.auth.userId})
-    Post.findOne({ _id: req.params.id })
-    .then(post => {
-      if(req.auth.userId === post.userId || currentUser.isAdmin === true){
-        const filename = post.imageUrl.split('/images/')[1];
-        fs.unlink(`images/${filename}`, () => {
-          Post.deleteOne({ _id: req.params.id })
-          .then(() => res.status(200).json({ message: 'Post removed!'}))
-          .catch(error => res.status(400).json({error : "Post not find"}));
-        });
-      }
-    })
-    .catch(error => res.status(500).json({ error }));
-}
+exports.deletePost = async (req, res, next) => {
+	// Checking if current user is admin from DB
+	let isCurrentUserAdmin = await isUserAdmin(req.auth.userId);
+	// Loading Post from DB
+	Post.findOne({ _id: req.params.id })
+	.then(post => {
+		// Checking if current User is owner of the Post
+    if(req.auth.userId === post.userId || isCurrentUserAdmin === true) {
+			// Deleting Post and Image
+			const filename = post.imageUrl.split('/images/')[1];
+			fs.unlink(`images/${filename}`, () => {
+				Post.deleteOne({ _id: req.params.id })
+				.then(() => res.status(200).json({ message: 'Post removed!'}))
+				.catch(error => res.status(400).json({error : "Post not find"}));
+			});
+		}
+		else {
+			res.status(400).json({error : "This post does not belong to you" })
+		}
+	})
+	.catch(error => res.status(500).json({ error }));
+};
 
 // Select a single post
 exports.getOnePost = (req, res, next) => {
@@ -144,4 +168,4 @@ exports.likesAndDislikes = (req, res, next) => {
       error: error,
     });
   });
-}                                                                                                                                                                                                                                                                                                        
+}                                                                                                                                                                                                                                                                                                      

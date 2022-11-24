@@ -2,21 +2,20 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Logout from '../../assets/logo-groupomania/logout.png';
 import { useNavigate } from 'react-router-dom';
-import { getUserData } from "../../utils/lib";
+import { setUserData, getUserData } from "../../utils/lib";
 
 const Navigation = () => {
 
 	// Localstorage recovery of the token, userId
 	let userData = getUserData();
-	console.log(userData.token);
 
 	// Redirect to the post page
 	let navigate = useNavigate();
 
 	// Logout
 	function removeUserData(){
-		if (window.confirm("Êtes-vous certain(e) de vouloir vous deconnecter ?")){
-			localStorage.removeItem('userData');
+		if (window.confirm("Are you sure you want to disconnect ?")){
+			setUserData({});
 			navigate('signin');
 		}
 	}

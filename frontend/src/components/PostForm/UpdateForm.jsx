@@ -33,26 +33,6 @@ const UpdateForm = () => {
 		})
 		.then(function (data) {
 			setpostsUpdate(data);
-			// Checking property of the post
-			if(data.userId !== userData.userId) {
-				// Checking if current user is really an admin
-				fetch(`http://localhost:4000/api/auth/${userData.userId}`)
-				.then(function (res1) {
-				 if (res1.ok) {
-				   return res1.json();
-				 }else {
-					throw res1.statusText;
-				}
-				})
-				.then(function (res1) {
-					if(res1.isAdmin === false) {
-						navigate(`/`);
-					}
-				})
-				.catch(function (err1) {
-					console.log(err1);
-				})
-			}
 		})
 		.catch(function (err) {
 			console.log(err);
@@ -86,7 +66,7 @@ const UpdateForm = () => {
 			}
 		})
 		.then(function(data) {
-			navigate(`/#post-${data.id}`);
+			navigate(`/#post-${postsUpdate._id}`);
 		})
 		.catch(function(err) {
 			alert(err);

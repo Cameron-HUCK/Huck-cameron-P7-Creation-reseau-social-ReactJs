@@ -1,0 +1,80 @@
+/* Header  AND Nav CSS */
+h1{
+  font-size: xx-large;
+  font-family: 'Shrikhand', cursive;
+  text-align: center;
+  background: #FFD7D7;
+  padding: 20px 0px 20px 0px;
+}
+
+
+.logo-picture{
+  width: 150px;
+  margin-left: 15px;
+}
+
+.flex-link {
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  justify-content: space-between;
+}
+
+.nav-container{
+  padding: 0px 50px 0px 30px;
+}
+
+.nav-container:hover{
+  border-bottom: 2px solid #FD2D01;
+}
+
+.bar-Nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.title {
+  box-shadow: 2px 3px 8px rgb(224, 217, 217);
+}
+
+.logo-logout {
+  max-width: 20px;
+  align-items: center;
+  padding: 0px 50px 0px 50px;
+  cursor: pointer;
+}
+
+.logo-logout:hover{
+  transform: scale(1.03);
+  opacity: 0.8;
+}
+/* Media Queries tablette Portrait 900px */
+@media screen and (max-width: 900px){
+  /* Header  AND Nav CSS */
+  .flex-link{
+    padding: 25px ;
+    justify-content: space-between;
+  }
+
+  .bar-Nav{
+    display: initial;
+    text-align: center;
+  }
+
+  .logo-picture{
+    margin: 0;
+    width: 150px;
+  }
+}
+/* Media Queries 768px */
+@media screen and (max-width: 769px){
+
+  /* Header  AND Nav CSS 768px */
+  .nav-container{
+    padding: 0;
+  }
+  .logo-logout{
+    padding: 0;
+  }
+}

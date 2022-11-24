@@ -1,0 +1,157 @@
+/* CREATE PAGE */
+/* Create Post Page CSS */
+.from-post{
+    background: #FFD7D7;
+}
+  
+#post-title{
+  box-shadow: 0px 1px 6px darkgrey;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  width: 400px;
+  padding: 5px;
+}
+
+#post-content{
+  box-shadow: 0px 1px 6px darkgrey;
+  margin-bottom: 20px;
+  width: 800px;
+  height: 200px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+textarea{
+resize : none;
+}
+
+.user-id-email {
+  font-family: 'Shrikhand', cursive;
+  text-align: center;
+  width: 33%;
+  margin: 10px 30px 30px 30px;
+  border: 3px solid #FFD7D7;
+  background: #FFD7D7;
+  border-radius: 15px;
+}
+
+#user-post {
+  padding-left: 10px;
+}
+#addtopost{
+  font-style: italic;
+  border-radius: 15px;
+  padding: 15px;
+  cursor: pointer;
+  font-size: 15px;
+  background: #FD2D01;
+  color: white;
+  font-family: 'Shrikhand', cursive;
+  font-size: 14px;
+}
+
+.form-post{
+  padding: 0px 20px 25px 30px;
+}
+
+.form-background{
+  padding: 10px 15px 10px 15px;
+  border-radius: 15px;
+  background: #FFD7D7;
+}
+
+.text-to-post{
+  background-color: white;
+  box-shadow: 1px 1px 10px #FD2D01;
+  border-radius: 10px;
+  margin: 0px 10px 10px 0px;
+  height: 100px;
+  border-color: #FD2D01;
+  width: 100%;
+}
+
+#post-image {
+  display: none;
+}
+
+.label-file {
+  cursor: pointer;
+  display: block;
+  padding: 14px 20px;
+  background: #fff;
+  color: black;
+  font-size: 1em;
+  cursor: pointer;
+  width: 16%;
+  font-family: 'Shrikhand', cursive;
+  border-radius: 6px;
+}
+
+.add-post-item{
+  margin-top: 25px;
+}
+
+.flex-form{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+/* Media Queries tablette Portrait 900px */
+@media screen and (max-width: 900px){
+
+    /* Create POST Page CSS 900px */
+    #post-content{
+      width: 700px;
+    }  
+}
+/* Media Queries 791px */
+@media screen and (max-width: 791px){
+  #post-content{
+    width: 600px;
+  }
+}
+/* Media Queries 768px */
+@media screen and (max-width: 769px){
+
+  /* Create Page CSS  768px */
+  .user-id-email{
+    width: auto;
+  }
+
+  #post-title{
+    width: 300px;
+  }
+  
+  #post-content{
+    width: 300px;
+  }
+
+  .label-file{
+    width: auto;
+  }
+
+  .addBtton{
+    margin: 0;
+  }
+
+  /* Auth Page CSS 768px*/
+  .flex-button-end{
+    text-align: center;
+  }
+
+  #sign-up-form{
+    text-align: center;
+    padding: 40px 0px 40px 0px;
+  }
+
+  #email{
+    width: 300px;
+  }
+  
+  #password{
+    margin-bottom: 20px;
+    width: 300px;
+  }
+}
+
+  

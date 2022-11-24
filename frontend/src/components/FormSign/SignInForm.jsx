@@ -25,7 +25,7 @@ const SignInForm = () => {
     }
     if(!regExEmail(userEmail)){
       let errorMessage = document.querySelector(".password-error");
-			errorMessage.textContent = "Invalid email or password";
+			errorMessage.textContent = "Invalid email";
       return;
     }
     
@@ -52,42 +52,40 @@ const SignInForm = () => {
 		})
 		.then(function(data) {
 			setUserData(data);
-			console.log('data', data);
 			navigate(`/`);
 		})
 		.catch(function(err) {
-			console.log(err);
 			let errorMessage = document.querySelector(".password-error");
-			errorMessage.textContent = "Il y a eu un problème";
+			errorMessage.textContent = "Invalid password";
 		});
 	}
   
   return (
-      <form action="" onSubmit={handleLogin} id="sign-up-form">
-        <label htmlFor="email" className='flex-mail'>Email :</label>
-        <input 
-        type="text" 
-        name="email" 
-        id="email" 
-        onChange={(e) => setEmail(e.target.value)} 
-        value={email}
-        required
-        />
-        <div className="email-error"></div>
-        <label htmlFor="password">Password :</label>
-        <input 
-        type="password" 
-        name="password" 
-        id="password" 
-        onChange={(e) => setPassWord(e.target.value)}
-        value={password}
-        required
-        />
-        <div className="password-error"></div>
-        <div className="flex-button-end">
-          <input type="submit" value=" Se connecter" className='validate-button' />
-        </div>  
-     </form>
+    <form action="" onSubmit={handleLogin} id="sign-up-form">
+      <label htmlFor="email" className='flex-mail'>Email :</label>
+      <input 
+      type="text" 
+      name="email" 
+      id="email" 
+      onChange={(e) => setEmail(e.target.value)} 
+      value={email}
+      required
+      />
+      <div className="email-error"></div>
+      <label htmlFor="password">Password :</label>
+      <input 
+      type="password" 
+      name="password" 
+      id="password" 
+      onChange={(e) => setPassWord(e.target.value)}
+      value={password}
+      required
+      />
+      <div className="password-error"></div>
+      <div className="flex-button-end">
+        <input type="submit" value=" Se connecter" className='validate-button' />
+      </div>  
+    </form>
   );
 }
 

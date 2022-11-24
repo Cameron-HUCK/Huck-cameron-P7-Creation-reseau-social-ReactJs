@@ -49,11 +49,9 @@ const SignUpForm = () => {
       }
 		})
 		.then(function(data) {
-			console.log('data', data);
 			navigate(`/signin`);
 		})
 		.catch(function(err) {
-			console.log(err);
 			let errorMessage = document.querySelector(".password-error");
 			errorMessage.textContent = "Il y a eu un problème";
 		});

@@ -21,10 +21,10 @@ const SignIn = () => {
     <div className='auth-Page'>
       <h1>Signin :</h1>
       <div className="form-container">
-                <div className="sign-container">
-                    <SignInForm />
-                </div>    
-            </div>
+        <div className="sign-container">
+            <SignInForm />
+          </div>    
+      </div>
     </div> 
   );
 }

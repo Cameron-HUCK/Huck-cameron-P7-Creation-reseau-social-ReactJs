@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Post from '../../components/Post/index';
 import styled, { keyframes } from 'styled-components';
-import { getUserData } from "../../utils/lib";
+import { setUserData, getUserData } from "../../utils/lib";
 import { useNavigate } from 'react-router-dom';
 
 // CSS loader !
@@ -50,7 +50,6 @@ function Home() {
 	      }
 	    )
 	      .then(function (res) {
-	      	console.log(res);
 	        if (res.ok) {
 	          return res.json();
 	        }
@@ -63,6 +62,10 @@ function Home() {
 	      })
 	      .catch(function (err) {
 	        console.log(err);
+	        if(err === 'Unauthorized') {
+						setUserData({});
+						navigate('signin');
+	        }
 	      })
 	    setDataLoading(false)
   	}
@@ -82,6 +85,7 @@ function Home() {
             <ul id="posts-list">
               {posts.map((post, index) => (
                 <Post 
+                	key={post._id}
                   id={post._id}
                   title={post.title}
                   message={post.message}
