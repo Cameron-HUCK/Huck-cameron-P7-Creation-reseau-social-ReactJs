@@ -1,6 +1,6 @@
 # Groupomania #
 
-Groupomania est un réseau social pour les employés de la société Groupomania
+Groupomania est un réseau social pour les employés de la société Groupomania avec ReactJs
 
 # Pour installer / lancer le frontend # 
 - npm install
